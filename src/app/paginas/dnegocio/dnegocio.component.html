@@ -5,8 +5,16 @@
 <div class="grid-container">
     <div *ngFor="let producto of negocio.Productos" class="producto">
         <a routerLink="/producto/{{producto.codProd}}">
-            <div class="Nombre">{{producto.Nombre}}</div>
-            <div class="Descripcion">{{producto.Descripcion}}</div>    
+            <div class="container">
+                <div class="informacion">
+                    <div class="Nombre">{{producto.Nombre}}</div>
+                    <div class="Descripcion">{{producto.Descripcion}}</div>   
+                </div>
+                <div class="imagen">
+                    <img class="imagen" src="{{producto.Imagen}}" alt="{{producto.Nombre}}">
+                </div>
+            </div>
+             
         </a>
     </div>
 </div>

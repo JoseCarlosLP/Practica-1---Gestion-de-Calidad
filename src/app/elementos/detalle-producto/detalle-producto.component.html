@@ -1,22 +1,26 @@
 <div *ngIf="producto">
     <h2>{{producto.Nombre | uppercase}} Detalles</h2>
-    <div class="Detalles">
-        <div><label>Codigo Producto: </label>{{producto.codProd}}</div>
+    <div class="container">
+        <div class="Detalles">
+            <div><label>Codigo Producto: </label>{{producto.codProd}}</div>
+        
+            <div>
+                <label for="producto-Nombre">Nombre: </label>
+                <input id="producto-Nombre" value="{{producto.Nombre}}" disabled="true"/>
+            </div>
+            <div>
+                <label for="producto-Descripcion">Descripcion: </label>
+                <input id="producto-Descripcion" value="{{producto.Descripcion}}" disabled="true" style="width: 300px;"/>
+            </div>
+            <div>  
+                <label for="producto-Precio">Precio: </label>
+                <input id="producto-Precio" type="number" value="{{producto.Precio}}" disabled="true"/>
+            </div>
+        </div>
+        <div class="imagen">
+            <img src="{{producto.Imagen}}">
+        </div>
+    </div>
     
-        <div>
-            <label for="producto-Nombre">Nombre: </label>
-            <input id="producto-Nombre" value="{{producto.Nombre}}" disabled="true"/>
-        </div>
-        <div>
-            <label for="producto-Descripcion">Descripcion: </label>
-            <input id="producto-Descripcion" value="{{producto.Descripcion}}" disabled="true"/>
-        </div>
-        <div>  
-            <label for="producto-Precio">Precio: </label>
-            <input id="producto-Precio" type="number" value="{{producto.Precio}}" disabled="true"/>
-        </div>
-    </div>
-    <div class="imagen">
-    </div>
     <button type="button" (click)="goBack()">go back</button>
   </div>

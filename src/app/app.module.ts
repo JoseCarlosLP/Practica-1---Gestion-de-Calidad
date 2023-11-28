@@ -11,6 +11,7 @@ import { ContactoComponent } from './paginas/contacto/contacto.component';
 import { HttpClientModule} from '@angular/common/http';
 import { DetalleNegocioComponent } from './elementos/detalle-negocio/detalle-negocio.component';
 import { DetalleProductoComponent } from './elementos/detalle-producto/detalle-producto.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { DetalleProductoComponent } from './elementos/detalle-producto/detalle-p
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-detalle-negocio',
@@ -6,10 +6,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./detalle-negocio.component.css']
 })
 export class DetalleNegocioComponent {
-  @Input() imagen: string = "";
+  @Input() Imagen: string = "";
   @Input() Nombre: string = "";
   @Input() Categoria: string = "";
-
-  @Output() click: EventEmitter<string> = new EventEmitter<string>();
 }
 
