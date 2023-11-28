@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NegociosService } from 'src/app/servicios/negocios.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-negocios',
@@ -10,7 +12,7 @@ export class NegociosComponent implements OnInit{
 
   datos: any;
 
-  constructor(private negociosService: NegociosService){}
+  constructor(private router:Router, private negociosService: NegociosService){}
   ngOnInit(): void { 
     this.negociosService.obtenerNegocios().subscribe(
       data => this.datos = data,
@@ -18,7 +20,5 @@ export class NegociosComponent implements OnInit{
       () => console.log("Fin de los negocios")
     )
   }
-  mostrar(dato: any):void{
-    console.log(dato)
-  }
+  
 }

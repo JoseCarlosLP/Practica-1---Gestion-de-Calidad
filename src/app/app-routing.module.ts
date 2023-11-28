@@ -5,12 +5,14 @@ import { ContactoComponent } from './paginas/contacto/contacto.component';
 import { NegociosComponent } from './paginas/negocios/negocios.component';
 import { DNegocioComponent } from './paginas/dnegocio/dnegocio.component';
 import { DetalleProductoComponent } from './elementos/detalle-producto/detalle-producto.component';
+import { NegocioComponent } from './paginas/negocio/negocio.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
   { path: 'negocios', component: NegociosComponent},
   { path: 'contacto', component: ContactoComponent},
   { path:'dnegocio/:id', component: DNegocioComponent},
+  { path:'negocio/:id', component: NegocioComponent},
   { path:'producto/:codProd', component: DetalleProductoComponent}
 ];
 

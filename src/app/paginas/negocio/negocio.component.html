@@ -1,0 +1,24 @@
+<div class="nombreNegocio">
+    <h1>{{negocio.Nombre}}</h1>
+</div>
+<h2>Productos Disponibles:</h2>
+<div class="grid-container">
+    <div *ngFor="let producto of negocio.Productos" class="producto">
+            <div class="container">
+                <div class="informacion">
+                    <div class="Nombre">{{producto.Nombre}}</div>
+                    <div class="Descripcion">{{producto.Descripcion}}</div><br>   
+                    <div class="Precio">Bs. {{producto.Precio}}</div>
+                    <div class="botones">
+                        <button class="comprar" (click)="comprarProducto()">Comprar Producto</button>
+                        <button class="editar" [routerLink]="['/dnegocio', negocio._id]">Editar Producto</button>
+
+                        
+                    </div>
+                </div>
+                <div class="imagen">
+                    <img class="imagen" src="{{producto.Imagen}}" alt="{{producto.Nombre}}">
+                </div>
+            </div>
+    </div>
+</div>

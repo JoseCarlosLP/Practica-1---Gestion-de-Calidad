@@ -46,3 +46,11 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.boton-cambiar-vista {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
