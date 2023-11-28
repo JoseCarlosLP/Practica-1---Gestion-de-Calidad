@@ -1,1 +1,12 @@
-<p>dnegocio works!</p>
+<div class="nombreNegocio">
+    <h1>{{negocio.Nombre}}</h1>
+</div>
+<h2>Productos:</h2>
+<div class="grid-container">
+    <div *ngFor="let producto of negocio.Productos" class="producto">
+        <a routerLink="/producto/{{producto.codProd}}">
+            <div class="Nombre">{{producto.Nombre}}</div>
+            <div class="Descripcion">{{producto.Descripcion}}</div>    
+        </a>
+    </div>
+</div>

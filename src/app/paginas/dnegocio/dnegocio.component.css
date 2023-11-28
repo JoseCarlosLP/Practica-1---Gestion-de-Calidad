@@ -1,0 +1,28 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+    gap: 20px;
+  }
+  
+  .producto {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .producto .Nombre {
+    font-size: 24px;
+    color: #e44d26; 
+  }
+  
+  .producto .Descripcion {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+  a{
+    text-decoration: none;
+  }
+  .nombreNegocio{
+    text-align: center;
+  }
