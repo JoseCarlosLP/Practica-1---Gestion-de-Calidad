@@ -13,7 +13,6 @@ export class NegociosComponent implements OnInit{
   constructor(private negociosService: NegociosService){}
   ngOnInit(): void { 
     this.negociosService.obtenerNegocios().subscribe(
-      //data => console.log(data),
       data => this.datos = data,
       error => console.log(error),
       () => console.log("Fin de los negocios")

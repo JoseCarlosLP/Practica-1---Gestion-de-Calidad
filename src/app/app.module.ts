@@ -10,7 +10,7 @@ import { InicioComponent } from './paginas/inicio/inicio.component';
 import { ContactoComponent } from './paginas/contacto/contacto.component';
 import { HttpClientModule} from '@angular/common/http';
 import { DetalleNegocioComponent } from './elementos/detalle-negocio/detalle-negocio.component';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import { DetalleNegocioComponent } from './elementos/detalle-negocio/detalle-neg
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
