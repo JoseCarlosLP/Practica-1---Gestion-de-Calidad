@@ -6,17 +6,23 @@ import { AppComponent } from './app.component';
 import { NegociosComponent } from './paginas/negocios/negocios.component';
 import { ProductosComponent } from './paginas/productos/productos.component';
 import { DNegocioComponent } from './paginas/dnegocio/dnegocio.component';
+import { InicioComponent } from './paginas/inicio/inicio.component';
+import { ContactoComponent } from './paginas/contacto/contacto.component';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     NegociosComponent,
     ProductosComponent,
-    DNegocioComponent
+    DNegocioComponent,
+    InicioComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
