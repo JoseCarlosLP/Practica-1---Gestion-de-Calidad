@@ -9,6 +9,8 @@ import { DNegocioComponent } from './paginas/dnegocio/dnegocio.component';
 import { InicioComponent } from './paginas/inicio/inicio.component';
 import { ContactoComponent } from './paginas/contacto/contacto.component';
 import { HttpClientModule} from '@angular/common/http';
+import { DetalleNegocioComponent } from './elementos/detalle-negocio/detalle-negocio.component';
+
 
 @NgModule({
   declarations: [
@@ -17,12 +19,13 @@ import { HttpClientModule} from '@angular/common/http';
     ProductosComponent,
     DNegocioComponent,
     InicioComponent,
-    ContactoComponent
+    ContactoComponent,
+    DetalleNegocioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

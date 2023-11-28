@@ -1,1 +1,8 @@
-<p>negocios works!</p>
+<div *ngFor="let negocio of datos" class="negocio">
+    <app-detalle-negocio
+    [Nombre]= "negocio.Nombre"
+    [Categoria]= "negocio.Categoria"
+    (click)="mostrar($event)"
+    ></app-detalle-negocio>
+</div>
+

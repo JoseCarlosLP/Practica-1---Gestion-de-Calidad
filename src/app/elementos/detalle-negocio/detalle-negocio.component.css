@@ -1,0 +1,22 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+    gap: 20px;
+  }
+  
+  .negocio {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .negocio .Nombre {
+    font-size: 24px;
+    color: #e44d26; 
+  }
+  
+  .negocio .Categoria {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+  }
