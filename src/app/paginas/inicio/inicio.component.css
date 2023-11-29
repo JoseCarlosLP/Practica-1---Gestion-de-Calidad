@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 3em;
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.5em;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out, border 0.3s ease-in-out; /* Añadido 'border' a la transición */
+    margin-bottom: 10px;    
+}
+
+button:hover {
+    background-color: #c0392b;
+    transform: scale(1.1);
+    border: 2px solid #fff; /* Añadido el borde blanco al hacer hover */
+}
+
+
+img {
+    max-width: 20%;
+    height: auto;
+}
