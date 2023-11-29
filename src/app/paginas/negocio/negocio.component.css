@@ -8,17 +8,18 @@
 }
 
 .producto {
-  background-color: #b1b4b5;
+  background-color: #fbfdfe;
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(164, 63, 63, 0.1);
+  border-radius: 15px;
 }
 
 .producto .Nombre {
-  color: #800000;
+  color: #010101;
   font-size: 30px;
   font-weight: bold;
-  font-family: 'Times New Roman', Times, serif; /* Tipo de letra estilo carta */
-  font-style: italic; /* Itálica */
+  /* font-family: 'Times New Roman', Times, serif; Tipo de letra estilo carta */
+  /* font-style: italic; Itálica */
 }
 
 .producto .Descripcion {
@@ -29,7 +30,7 @@
 
 .producto .Precio {
   font-size: 20px;
-  color: #3399ff;
+  color: #cb5d13;
   font-weight: bold;
 }
 a{
@@ -48,8 +49,7 @@ a{
 }
 .imagen{
   border-left: 0;
-  max-width: 100%;
-  max-height: 100px;
+  height: 100px;
   margin-top: 10px;
   border-radius: 8px;
 }
@@ -67,13 +67,26 @@ a{
   padding: 10px;
   border: none;
   cursor: pointer;
-}
-
-button{
+  background-color: #cb5d13;
+  color: white;
   border-radius: 8px;
-  transition: 0.5s ease;;
+  transition: 0.5s ease;
+  position: relative;
+  top:99%;
+  bottom: 1px;
 }
-button:hover{
-  background-color: orange;
 
+@media (max-width:500px){
+  .producto .Nombre{
+    font-size: 20px;
+  }
 }
+
+@media (max-width:670px){
+  .container{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+
