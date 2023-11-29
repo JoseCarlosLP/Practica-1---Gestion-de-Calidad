@@ -14,6 +14,7 @@ import { DetalleProductoComponent } from './elementos/detalle-producto/detalle-p
 import {MatGridListModule} from '@angular/material/grid-list';
 import { NegocioComponent } from './paginas/negocio/negocio.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

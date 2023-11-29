@@ -25,6 +25,10 @@ body {
     margin: 0 15px;
     font-size: 18px;
 }
+.categorias{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .barra-navegacion a:hover {
     text-decoration: underline;
