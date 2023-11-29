@@ -30,7 +30,7 @@ def get_producto(codProd):
 @app.route('/negocios/<int:id>/productos', methods = ['POST'])
 def insert_pedido(id):
     carrito = request.values.get("carrito")
-    total = 0 
+    total = 0
     pedidos.insert_one(
         {"_id": 1, "estadoPed": "pendiente", "montoTotal": total, "negocioId": id,
          "productos": carrito})

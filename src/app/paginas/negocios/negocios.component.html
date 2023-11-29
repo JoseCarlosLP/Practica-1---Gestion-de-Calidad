@@ -8,14 +8,14 @@
 </div> -->
 
 <mat-grid-list class="list-producto" cols="{{4}}" rowHeight="190px">
-    <mat-grid-tile *ngFor="let negocio of datos" class="negocio" 
-    [colspan]="1"
-    [rowspan]="2">
+  <mat-grid-tile *ngFor="let negocio of datos" class="negocio"
+                 [colspan]="1"
+                 [rowspan]="2">
     <app-detalle-negocio
-    [Nombre]= "negocio.Nombre"
-    [Categoria]= "negocio.Categoria"
-    [Imagen]= "negocio.Imagen"
-    [Id] = "negocio._id"
+      [Nombre]= "negocio.Nombre"
+      [Categoria]= "negocio.Categoria"
+      [Imagen]= "negocio.Imagen"
+      [Id] = "negocio._id"
     ></app-detalle-negocio>
-    </mat-grid-tile>
+  </mat-grid-tile>
 </mat-grid-list>

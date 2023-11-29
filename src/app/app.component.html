@@ -6,18 +6,19 @@
     <title>PAGINA PRINCIPAL</title>
 </head>
 <body>
-    <div class="barra-navegacion">
-        <br>
-        <a [routerLink]="['inicio']"><b>INICIO</b></a>
-        <a [routerLink]="['negocios']"><b>NEGOCIOS</b></a>
-        <a [routerLink]="['contacto']"><b>CONTACTO</b></a>
-        
-    </div>
-    <hr>
-    <router-outlet></router-outlet>
-    
-    </body>
-    <footer>
-        <p>&copy; 2023 Proyecto Final Tec Web</p>
-    </footer>    
+<div class="barra-navegacion">
+  <div class="titulo"> <h2> PLAZA DE COMIDAS </h2> </div>
+  <div class="categorias">
+    <a [routerLink]="['inicio']"><b>INICIO</b></a>
+    <a [routerLink]="['negocios']"><b>NEGOCIOS</b></a>
+    <a [routerLink]="['contacto']"><b>CONTACTO</b></a>
+  </div>
+</div>
+<hr>
+<router-outlet></router-outlet>
+
+</body>
+<footer>
+  <p>&copy; 2023 Proyecto Final Tec Web</p>
+</footer>
 </html>

@@ -22,3 +22,12 @@
     height: auto;
     border-radius: 8px;
 }
+
+app-detalle-negocio{
+  transition: transform 0.3s;
+}
+
+app-detalle-negocio:hover{
+  transform: scale(1.05);
+}
+

@@ -5,9 +5,17 @@ body {
 }
 
 .barra-navegacion {
-    background-color: #e44d26;
-    text-align: center;
-    padding: 15px;
+  background-color: #e44d26;
+  text-align: center;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap:wrap;
+}
+
+.titulo{
+  width: 100%;
+  color: white;
 }
 
 .barra-navegacion a {
