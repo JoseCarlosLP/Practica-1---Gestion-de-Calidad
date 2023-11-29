@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class NegociosComponent implements OnInit{
 
   datos: any;
-
   constructor(private router:Router, private negociosService: NegociosService){}
   ngOnInit(): void {
     this.negociosService.obtenerNegocios().subscribe(
