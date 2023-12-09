@@ -21,8 +21,8 @@ def get_negocio(id):
 def get_productos(id):
     return negocios.find_one({"_id": id})['Productos']
 
-@app.route('/producto/<int:codProd>',methods=['GET'])
-def get_producto(codProd):
+@app.route('/dnegocio/<int:id>/producto/<int:codProd>',methods=['GET'])
+def get_producto(id,codProd):
     producto = negocios.find_one({"Productos.codProd": codProd}, {"_id": 0, "Productos.$": 1})
     if producto and 'Productos' in producto:
         return jsonify(producto['Productos'][0])

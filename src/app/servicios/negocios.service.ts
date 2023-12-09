@@ -16,8 +16,11 @@ export class NegociosService{
     const url=`${"http://127.0.0.1:8000/negocios"}/${id}`;
     return this.http.get(url)
   }
-  obtenerProducto(codProd:Number){
-    const url=`${"http://127.0.0.1:8000/producto"}/${codProd}`;
+  obtenerProducto(idNeg:number,codProd:Number){
+    const url=`${"http://127.0.0.1:8000/dnegocio"}/${idNeg}${"/producto"}/${codProd}`;
     return this.http.get(url)
+  }
+  updateProducto(nombre: string, descripcion:string, precio: number){
+
   }
 }

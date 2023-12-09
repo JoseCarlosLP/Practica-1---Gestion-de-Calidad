@@ -19,7 +19,8 @@ export class DetalleProductoComponent {
   }
   obtenerProducto():void{
     const codProd = parseInt(this.route.snapshot.paramMap.get('codProd')!, 10);
-    this.negocioService.obtenerProducto(codProd).subscribe(
+    const idNeg = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    this.negocioService.obtenerProducto(idNeg,codProd).subscribe(
       (producto:Object)=>this.producto=producto)
   }
   goBack(): void {
