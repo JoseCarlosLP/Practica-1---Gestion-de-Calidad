@@ -119,8 +119,21 @@ def insert_pedido(id):
 @app.route('/producto/<int:codProd>', methods= ['DELETE'])
 def delete_product(codProd):
   print("api recibe:", codProd)
-  negocios.update_one({"_id":1}, {"$pull": {"Productos": {"codProd": codProd}}})
+  negocios.update_one({}, {"$pull": {"Productos": {"codProd": codProd}}})
   return jsonify({"mensaje": "Producto eliminado exitosamente"})
+
+@app.route('/actualizar/<int:NegId>', methods= ['POST'])
+def update_product(NegId):
+  data = request.get_json()
+  producto = {
+    "Productos.$.codProd": data['codProd'],
+    'Productos.$.Nombre': data['Nombre'],
+    'Productos.$.Descripcion': data['Descripcion'],
+    'Productos.$.Categoria': data['Categoria'],
+    'Productos.$.Precio': data['Precio'],
+  }
+  negocios.update_one({"_id":NegId,"Productos.codProd":data["codProd"]}, {"$set":producto},upsert=True)
+  return jsonify({"mensaje": "Actualizado Exitosamente"})
 
 
 if __name__ == '__main__':

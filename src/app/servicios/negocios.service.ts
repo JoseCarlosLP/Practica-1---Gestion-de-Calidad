@@ -20,8 +20,15 @@ export class NegociosService{
     const url=`${"http://127.0.0.1:8000/dnegocio"}/${idNeg}${"/producto"}/${codProd}`;
     return this.http.get(url)
   }
-  updateProducto(nombre: string, descripcion:string, precio: number){
-
+  updateProducto(NegId:number,codProd:number,nombre: string, descripcion:string,categoria:string, precio: number){
+    const body = {
+      codProd:codProd,
+      Nombre:nombre,
+      Descripcion:descripcion,
+      Categoria:categoria,
+      Precio:precio
+    }
+    return this.http.post("http://127.0.0.1:8000/actualizar/"+NegId,body)
   }
   eliminarProducto(codProd:number){
     return this.http.delete("http://127.0.0.1:8000/producto/"+codProd);

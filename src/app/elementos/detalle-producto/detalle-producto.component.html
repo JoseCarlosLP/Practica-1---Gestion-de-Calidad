@@ -1,29 +1,37 @@
 <div *ngIf="producto">
+    
+    <button type="button" (click)="goBack()">go back</button>
     <h2>{{producto.Nombre | uppercase}} Detalles</h2>
-    <form>
         <div class="container">
             <div class="Detalles">
-                <div><label>Codigo Producto: </label>{{producto.codProd}}</div>
-            
-                <div>
-                    <label for="producto-Nombre">Nombre: </label>
-                    <input id="producto-Nombre" value="{{producto.Nombre}}" disabled="true"/>
-                </div>
-                <div>
-                    <label for="producto-Descripcion">Descripcion: </label>
-                    <input id="producto-Descripcion" value="{{producto.Descripcion}}" disabled="true" style="width: 300px;"/>
-                </div>
-                <div>  
-                    <label for="producto-Precio">Precio: </label>
-                    <input id="producto-Precio" type="number" value="{{producto.Precio}}" disabled="true"/>
-                </div>
+                <form id="productoForm">
+                    <div>
+                        <label for="codProd">Codigo Producto: </label>
+                        <input type="number" name="codProd" id="codProd" value="{{producto.codProd}}" required #codProd/>
+                    </div>    
+                    <div>
+                        <label for="Nombre">Nombre: </label>
+                        <input type="text" id="Nombre" name="Nombre" value="{{producto.Nombre}}" required #Nombre/>
+                    </div>
+                    <div>
+                        <label for="Descripcion">Descripcion: </label>
+                        <input type="text" id="Descripcion" name="Descripcion" value="{{producto.Descripcion}}" style="width: 300px;" required #Descripcion/>
+                    </div>
+                    <div>
+                        <label for="Categoria">Categoria: </label>
+                        <input type="text" id="Categoria" nombre="Categoria" value="{{producto.Categoria}}" required #Categoria/>
+                        
+                    </div>
+                    <div>
+                        <label for="Precio">Precio: </label>
+                        <input id="Precio" name="Precio" type="number" value="{{producto.Precio}}" required #Precio/>
+                    </div>
+                    <button type="submit" (click)="save(codProd.value,Nombre.value, Descripcion.value, Categoria.value, Precio.value)">guardar</button>
+                </form>
+                
             </div>
             <div class="imagen">
                 <img src="{{producto.Imagen}}">
             </div>
         </div>    
-    </form>
-    
-    <button type="button" (click)="goBack()">go back</button>
-    <!-- <button type="button" (click)="save()">guardar</button> -->
   </div>
