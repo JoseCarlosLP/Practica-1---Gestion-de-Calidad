@@ -23,4 +23,7 @@ export class NegociosService{
   updateProducto(nombre: string, descripcion:string, precio: number){
 
   }
+  eliminarProducto(codProd:number){
+    return this.http.delete("http://127.0.0.1:8000/producto/"+codProd);
+  }
 }
