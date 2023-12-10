@@ -19,5 +19,4 @@ export class NegociosComponent implements OnInit{
       () => console.log("Fin de los negocios")
     )
   }
-
 }

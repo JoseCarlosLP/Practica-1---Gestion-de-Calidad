@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="form-container">
+    <h2>Iniciar Sesión</h2>
+    <form id="loginForm">
+      <label for="username">Usuario:</label>
+      <input type="text" id="username" name="username" required #username>
+
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required #password>
+
+      <button type="submit" (click)="iniciarSesion(username.value, password.value)">Iniciar Sesión</button>
+    </form>
+  </div>
+
+  <div class="form-container">
+    <h2>Registrarse</h2>
+    <form id="signupForm" >
+      <label for="newUsername">Nuevo Usuario:</label>
+      <input type="text" id="newUsername" name="newUsername" required #newUsername>
+
+      <label for="newPassword">Nueva Contraseña:</label>
+      <input type="password" id="newPassword" name="newPassword" required #newPassword>
+
+      <label for="newPassword">Nuevo Correo:</label>
+      <input type="text" id="newEmail" name="newEmail" required #newEmail>
+
+      <button type="submit" (click)="registrar(newUsername.value, newPassword.value,newEmail.value)">Registrarse</button>
+    </form>
+  </div>
+</div>

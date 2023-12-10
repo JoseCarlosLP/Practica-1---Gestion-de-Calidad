@@ -6,6 +6,7 @@ import { NegociosComponent } from './paginas/negocios/negocios.component';
 import { DNegocioComponent } from './paginas/dnegocio/dnegocio.component';
 import { DetalleProductoComponent } from './elementos/detalle-producto/detalle-producto.component';
 import { NegocioComponent } from './paginas/negocio/negocio.component';
+import {IniciarSesionComponent} from "./paginas/iniciar-sesion/iniciar-sesion.component";
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
@@ -14,7 +15,9 @@ const routes: Routes = [
   { path:'dnegocio/:id', component: DNegocioComponent},
   { path:'negocio/:id', component: NegocioComponent},
   { path:'dnegocio/:id/producto/:codProd', component: DetalleProductoComponent},
-  {path:"",redirectTo:'/inicio',pathMatch:'full'}
+  {path:'IniciarSesion', component: IniciarSesionComponent },
+  {path:'', redirectTo: '/IniciarSesion', pathMatch: 'full'} //Ruta por defecto
+  //{path:"",redirectTo:'/inicio',pathMatch:'full'}
 ];
 
 @NgModule({

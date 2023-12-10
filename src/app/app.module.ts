@@ -13,6 +13,8 @@ import { DetalleNegocioComponent } from './elementos/detalle-negocio/detalle-neg
 import { DetalleProductoComponent } from './elementos/detalle-producto/detalle-producto.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { NegocioComponent } from './paginas/negocio/negocio.component';
+import { IniciarSesionComponent } from './paginas/iniciar-sesion/iniciar-sesion.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -26,13 +28,15 @@ import { NegocioComponent } from './paginas/negocio/negocio.component';
     DetalleNegocioComponent,
     DetalleProductoComponent,
     NegocioComponent,
+    IniciarSesionComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatGridListModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatGridListModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
