@@ -1,6 +1,9 @@
 <div class="nombreNegocio">
     <h1>{{negocio.Nombre | uppercase}}</h1>
 </div>
+
+<button (click)="goBack()">goBack</button>
+<button [routerLink]='"/carrito/"+id'>Carrito</button>
 <h2>Productos Disponibles:</h2>
 <div class="grid-container">
     <div *ngFor="let producto of negocio.Productos" class="producto">
@@ -10,10 +13,7 @@
                     <div class="Descripcion">{{producto.Descripcion}}</div><br>
                     <div class="Precio">Bs. {{producto.Precio}}</div>
                     <div class="botones">
-                        <button class="comprar" (click)="comprarProducto()">Comprar Producto</button>
-                        <!--<button class="editar" [routerLink]="['/dnegocio', negocio._id]">Editar Producto</button>-->
-
-
+                        <button class="comprar" (click)="comprarProducto(producto)">Comprar Producto</button>
                     </div>
                 </div>
                 <div class="imagen">

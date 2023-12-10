@@ -8,6 +8,7 @@ import { DetalleProductoComponent } from './elementos/detalle-producto/detalle-p
 import { NegocioComponent } from './paginas/negocio/negocio.component';
 import {IniciarSesionComponent} from "./paginas/iniciar-sesion/iniciar-sesion.component";
 import { CrearProductoComponent } from './elementos/crear-producto/crear-producto.component';
+import { CarritoComponent } from './paginas/carrito/carrito.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
@@ -17,10 +18,10 @@ const routes: Routes = [
   { path:'negocio/:id', component: NegocioComponent},
   { path:'dnegocio/:id/producto/:codProd', component: DetalleProductoComponent},
   { path:'insertarProducto/:id', component: CrearProductoComponent},
-  
   {path:'IniciarSesion', component: IniciarSesionComponent },
-  {path:'', redirectTo: '/IniciarSesion', pathMatch: 'full'} //Ruta por defecto
+  {path:'', redirectTo: '/IniciarSesion', pathMatch: 'full'}, //Ruta por defecto
   //{path:"",redirectTo:'/inicio',pathMatch:'full'}
+  {path:'carrito/:id',component:CarritoComponent}
 ];
 
 @NgModule({

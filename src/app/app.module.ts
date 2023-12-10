@@ -16,6 +16,7 @@ import { NegocioComponent } from './paginas/negocio/negocio.component';
 import { IniciarSesionComponent } from './paginas/iniciar-sesion/iniciar-sesion.component';
 import {FormsModule} from "@angular/forms";
 import { CrearProductoComponent } from './elementos/crear-producto/crear-producto.component';
+import { CarritoComponent } from './paginas/carrito/carrito.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { CrearProductoComponent } from './elementos/crear-producto/crear-product
     NegocioComponent,
     IniciarSesionComponent,
     CrearProductoComponent,
+    CarritoComponent,
   ],
     imports: [
         BrowserModule,

@@ -60,16 +60,16 @@ def login():
 @app.route('/negocios', methods=['GET'])
 def get_negocios():
   # Verificar el token antes de permitir el acceso a esta ruta
-  token = request.headers.get('Authorization')
-  print(token)
+  # token = request.headers.get('Authorization')
+  # print(token)
   #token = str.replace(str(data), 'Bearer ', '')
 
-  try:
-    jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
-  except jwt.ExpiredSignatureError:
-    return jsonify({'error': 'Token expirado'}), 401
-  except jwt.InvalidTokenError:
-    return jsonify({'error': 'Token inválido'}), 401
+  # try:
+  #   jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+  # except jwt.ExpiredSignatureError:
+  #   return jsonify({'error': 'Token expirado'}), 401
+  # except jwt.InvalidTokenError:
+  #   return jsonify({'error': 'Token inválido'}), 401
 
   return list(negocios.find())
 
@@ -83,14 +83,14 @@ def get_negocio(id):
 @app.route('/negocios/<int:id>/productos', methods=['GET'])
 def get_productos(id):
   # Verificar el token antes de permitir el acceso a esta ruta
-  data = request.headers.get('Authorization')
-  token = str.replace(str(data), 'Bearer ', '')
-  try:
-    jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
-  except jwt.ExpiredSignatureError:
-    return jsonify({'error': 'Token expirado'}), 401
-  except jwt.InvalidTokenError:
-    return jsonify({'error': 'Token inválido'}), 401
+  # data = request.headers.get('Authorization')
+  # token = str.replace(str(data), 'Bearer ', '')
+  # try:
+  #   jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+  # except jwt.ExpiredSignatureError:
+  #   return jsonify({'error': 'Token expirado'}), 401
+  # except jwt.InvalidTokenError:
+  #   return jsonify({'error': 'Token inválido'}), 401
 
   # Lógica para obtener productos
   return jsonify(negocios.find_one({"_id": id})['Productos'])
@@ -107,14 +107,13 @@ def get_producto(id, codProd):
     return jsonify(producto['Productos'][0])
 
 
-@app.route('/negocios/<int:id>/productos', methods=['POST'])
-def insert_pedido(id):
-  carrito = request.values.get("carrito")
-  total = 0
+@app.route('/registrarPedido', methods=['POST'])
+def insert_pedido():
+  data=request.get_json()
   pedidos.insert_one(
-    {"_id": 1, "estadoPed": "pendiente", "montoTotal": total, "negocioId": id,
-     "productos": carrito})
-  return "Insertado Existosamente"
+    {"_id": data["idPedido"], "estadoPed": "pendiente", "montoTotal": data["total"], "negocioId": data["idNeg"],"UserId": data["idUser"],
+     "productos": data["productos"]})
+  return jsonify({"mensaje": "Pedido Insertado Exitosamente"})
 
 @app.route('/producto/<int:codProd>', methods= ['DELETE'])
 def delete_product(codProd):

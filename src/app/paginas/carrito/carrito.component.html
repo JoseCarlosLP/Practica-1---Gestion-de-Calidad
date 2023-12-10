@@ -1,0 +1,15 @@
+
+<button (click)="goBack()">goBack</button>
+
+<div *ngFor="let item of carrito">
+    <p>Producto: {{ item.codProd }}</p>
+    <p>Nombre: {{ item.nombre }}</p>
+    <p>Cantidad: {{ item.cantidad }}</p>
+    <p>Precio Unitario: {{ item.precio }}</p>
+    <p>Total: {{ item.cantidad * item.precio }}</p>
+</div>
+  
+  <p>Total del carrito: {{ total }}</p>
+
+  <button (click)="vaciarCarrito()">Cancelar</button>
+  <button (click)="confirmarCarrito()">Confirmar</button>
