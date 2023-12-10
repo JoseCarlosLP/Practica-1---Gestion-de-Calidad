@@ -136,6 +136,26 @@ def update_product(NegId):
   negocios.update_one({"_id":NegId,"Productos.codProd":data["codProd"]}, {"$set":producto},upsert=True)
   return jsonify({"mensaje": "Actualizado Exitosamente"})
 
+@app.route('/insertarProducto/<int:NegId>', methods= ['POST'])
+def insert_product(NegId):
+  data = request.get_json()
+  existing_product = negocios.find_one({'_id':NegId,'Productos.codProd':data['codProd']})
+  if existing_product:
+    return jsonify({'error': 'El producto ya existe'}), 400
+
+  producto = {
+    "Productos":{
+      "codProd": data['codProd'],
+      'Nombre': data['Nombre'],
+      'Descripcion': data['Descripcion'],
+      'Categoria': data['Categoria'],
+      'Precio': data['Precio'],
+      'Imagen': data['Imagen'],
+    }      
+  }
+  negocios.update_one({"_id":NegId},{"$push":producto})
+  return jsonify({"mensaje": "Actualizado Exitosamente"})
+
 
 if __name__ == '__main__':
   app.run(debug=True, port=8000)

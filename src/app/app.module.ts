@@ -15,6 +15,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { NegocioComponent } from './paginas/negocio/negocio.component';
 import { IniciarSesionComponent } from './paginas/iniciar-sesion/iniciar-sesion.component';
 import {FormsModule} from "@angular/forms";
+import { CrearProductoComponent } from './elementos/crear-producto/crear-producto.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {FormsModule} from "@angular/forms";
     DetalleProductoComponent,
     NegocioComponent,
     IniciarSesionComponent,
+    CrearProductoComponent,
   ],
     imports: [
         BrowserModule,

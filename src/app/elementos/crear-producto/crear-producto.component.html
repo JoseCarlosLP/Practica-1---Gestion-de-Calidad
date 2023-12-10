@@ -1,0 +1,31 @@
+
+<button type="button" (click)="goBack()">go back</button>
+<h2>CREAR PRODUCTO</h2>
+<form id="productoForm">
+    <div>
+        <label for="codProd">Codigo Producto: </label>
+        <input type="number" name="codProd" id="codProd"  required #codProd/>
+    </div>    
+    <div>
+        <label for="Nombre">Nombre: </label>
+        <input type="text" id="Nombre" name="Nombre" required #Nombre/>
+    </div>
+    <div>
+        <label for="Descripcion">Descripcion: </label>
+        <input type="text" id="Descripcion" name="Descripcion" style="width: 300px;" required #Descripcion/>
+    </div>
+    <div>
+        <label for="Categoria">Categoria: </label>
+        <input type="text" id="Categoria" nombre="Categoria" required #Categoria/>
+        
+    </div>
+    <div>
+        <label for="Precio">Precio: </label>
+        <input id="Precio" name="Precio" type="number" required #Precio/>
+    </div>
+    <div>
+        <label for="Imagen">URL Imagen: </label>
+        <input id="Imagen" name="Imagen" type="text"  #Imagen/>
+    </div>
+    <button type="submit" (click)="save(codProd.value,Nombre.value, Descripcion.value, Categoria.value, Precio.value, Imagen.value)">guardar</button>
+</form>

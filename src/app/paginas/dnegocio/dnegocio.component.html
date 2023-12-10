@@ -2,6 +2,7 @@
     <h1>{{negocio.Nombre}}</h1>
 </div>
 <h2>Productos:</h2>
+<button type="button" [routerLink]="'/insertarProducto/'+negocio._id">Nuevo Producto</button>
 <div class="grid-container">
     <div *ngFor="let producto of negocio.Productos" class="producto">
         <a [routerLink]="'/dnegocio/' + negocio._id + '/producto/' + producto.codProd">

@@ -20,6 +20,17 @@ export class NegociosService{
     const url=`${"http://127.0.0.1:8000/dnegocio"}/${idNeg}${"/producto"}/${codProd}`;
     return this.http.get(url)
   }
+  insertProducto(NegId:number,codProd:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
+    const body = {
+      codProd:codProd,
+      Nombre:nombre,
+      Descripcion:descripcion,
+      Categoria:categoria,
+      Precio:precio,
+      Imagen:imagen
+    }
+    return this.http.post("http://127.0.0.1:8000/insertarProducto/"+NegId,body)
+  }
   updateProducto(NegId:number,codProd:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
     const body = {
       codProd:codProd,
