@@ -20,13 +20,14 @@ export class NegociosService{
     const url=`${"http://127.0.0.1:8000/dnegocio"}/${idNeg}${"/producto"}/${codProd}`;
     return this.http.get(url)
   }
-  updateProducto(NegId:number,codProd:number,nombre: string, descripcion:string,categoria:string, precio: number){
+  updateProducto(NegId:number,codProd:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
     const body = {
       codProd:codProd,
       Nombre:nombre,
       Descripcion:descripcion,
       Categoria:categoria,
-      Precio:precio
+      Precio:precio,
+      Imagen:imagen
     }
     return this.http.post("http://127.0.0.1:8000/actualizar/"+NegId,body)
   }

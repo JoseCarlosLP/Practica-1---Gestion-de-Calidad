@@ -131,6 +131,7 @@ def update_product(NegId):
     'Productos.$.Descripcion': data['Descripcion'],
     'Productos.$.Categoria': data['Categoria'],
     'Productos.$.Precio': data['Precio'],
+    'Productos.$.Imagen': data['Imagen'],
   }
   negocios.update_one({"_id":NegId,"Productos.codProd":data["codProd"]}, {"$set":producto},upsert=True)
   return jsonify({"mensaje": "Actualizado Exitosamente"})

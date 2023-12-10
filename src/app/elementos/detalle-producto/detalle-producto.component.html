@@ -26,7 +26,11 @@
                         <label for="Precio">Precio: </label>
                         <input id="Precio" name="Precio" type="number" value="{{producto.Precio}}" required #Precio/>
                     </div>
-                    <button type="submit" (click)="save(codProd.value,Nombre.value, Descripcion.value, Categoria.value, Precio.value)">guardar</button>
+                    <div>
+                        <label for="Imagen">URL Imagen: </label>
+                        <input id="Imagen" name="Imagen" type="text" value="{{producto.Imagen}}" #Imagen/>
+                    </div>
+                    <button type="submit" (click)="save(codProd.value,Nombre.value, Descripcion.value, Categoria.value, Precio.value, Imagen.value)">guardar</button>
                 </form>
                 
             </div>

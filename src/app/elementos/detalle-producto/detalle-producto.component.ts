@@ -28,9 +28,9 @@ export class DetalleProductoComponent {
   goBack(): void {
     this.location.back();
   }
-  save(codProd:string,nombre:string,descripcion:string, categoria:string,precio:string):void{
+  save(codProd:string,nombre:string,descripcion:string, categoria:string,precio:string,imagen:string):void{
     console.log("Tenemos: ",nombre)
-    this.negocioService.updateProducto(this.idNeg,Number(codProd),nombre,descripcion,categoria,Number(precio)).subscribe(
+    this.negocioService.updateProducto(this.idNeg,Number(codProd),nombre,descripcion,categoria,Number(precio),imagen).subscribe(
       (response) =>{
         alert("Producto Actualizado Exitosamente");
         this.ngOnInit()
