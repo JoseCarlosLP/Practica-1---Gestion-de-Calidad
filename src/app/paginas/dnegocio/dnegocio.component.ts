@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./dnegocio.component.css']
 })
 export class DNegocioComponent {
-  idNeg:number=1;
+  id:number=0;
   negocio:any={};
   constructor(
     private negocioService: NegociosService,
@@ -18,13 +18,12 @@ export class DNegocioComponent {
     private router: Router
   ){}
   ngOnInit(){
+    this.id = Number(localStorage.getItem("idNeg"));
     this.obtenerNegocio();
-    this.idNeg = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    console.log("ID DEL DNEGOCIO: " + this.idNeg);
+    console.log("ID DEL DNEGOCIO: " + this.id);
   }
   obtenerNegocio(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.negocioService.obtenerNegocio(id).subscribe(
+    this.negocioService.obtenerNegocio(this.id).subscribe(
       (negocio: Object) => this.negocio = negocio,
       error => {
         if (error.error.error == 'Token expirado') {

@@ -16,14 +16,14 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
   { path: 'negocios', component: NegociosComponent},
   { path: 'contacto', component: ContactoComponent},
-  { path:'dnegocio/:id', component: DNegocioComponent},
+  { path:'dnegocio', component: DNegocioComponent},
   { path:'negocio/:id', component: NegocioComponent},
   { path:'dnegocio/:id/producto/:codProd', component: DetalleProductoComponent},
   { path:'insertarProducto/:id', component: CrearProductoComponent},
   {path:'carrito/:id',component:CarritoComponent},
   {path:'IniciarSesion', component: IniciarSesionComponent },
   {path:'pedidosCliente', component: PedidosClienteComponent },
-  {path:'pedidosNegocio/:id', component: PedidosAdministradorComponent},
+  {path:'pedidosNegocio', component: PedidosAdministradorComponent},
   {path:'', redirectTo: '/IniciarSesion', pathMatch: 'full'}//Ruta por defecto
 ];
 

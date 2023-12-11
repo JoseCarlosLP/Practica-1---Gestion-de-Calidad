@@ -17,7 +17,7 @@ export class PedidosAdministradorComponent {
   constructor(private router:Router, private negociosService: NegociosService, private route:ActivatedRoute,private location: Location){}
   
   ngOnInit(): void {
-    this.idNeg = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    this.idNeg = Number(localStorage.getItem("idNeg"));
     this.getPedidos();
   }
 
@@ -28,5 +28,18 @@ export class PedidosAdministradorComponent {
   getPedidos(){
     this.negociosService.obtenerPedidosNegocio(this.idNeg).subscribe(
       (pedidos:Object)=>this.pedidos=pedidos)
+  }
+
+  cambiarEstado(id:number)
+  {
+    this.negociosService.actualizarPedido(id).subscribe(
+      (response) =>{
+        alert("Pedido Actualizado Exitosamente");
+        this.ngOnInit();
+      },
+      (error) => {
+        alert("Error al Actualizar Pedido");
+      }
+    );
   }
 }

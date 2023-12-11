@@ -30,7 +30,11 @@ export class IniciarSesionComponent implements OnInit{
           if(response.idNeg==-1) {
             this.router.navigate(['/inicio']);
             localStorage.setItem("idCli",String(response.idUsu));
-          } else this.router.navigate(['/dnegocio/'+response.idNeg]);
+          } else 
+          {
+            this.router.navigate(['/dnegocio']);
+            localStorage.setItem("idNeg",String(response.idNeg));
+          }
         },
         (error) => {
           alert("Error al iniciar sesion");

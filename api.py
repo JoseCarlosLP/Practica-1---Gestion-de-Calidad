@@ -151,7 +151,7 @@ def get_productos(id):
 
 @app.route('/dnegocio/<int:id>/producto/<int:codProd>', methods=['GET'])
 def get_producto(id, codProd):
-  producto = negocios.find_one({"Productos.codProd": codProd}, {"_id": 0, "Productos.$": 1})
+  producto = negocios.find_one({"_id": id, "Productos.codProd": codProd}, {"_id": 0, "Productos.$": 1})
   if producto and 'Productos' in producto:
     return jsonify(producto['Productos'][0])
 
@@ -189,6 +189,13 @@ def get_pedidos_negocio(idNegocio):
     return jsonify({'error': 'Token inválido'}), 401
 
   return jsonify(list(pedidos.find({"negocioId": idNegocio})))
+
+@app.route("/pedidosNegocio",  methods=['POST'])
+def actualizar_estado_pedido():
+  data = request.get_json()
+  pedidos.update_one({'_id': data['idPedido']}, {"$set": {"estadoPed": "finalizado" }})
+  return jsonify({"mensaje": "Estado actualizado exitosamente"})
+
 
 
 @app.route('/producto/<int:codProd>/<int:idNeg>', methods= ['DELETE'])

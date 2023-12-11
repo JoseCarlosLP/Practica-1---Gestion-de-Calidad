@@ -64,4 +64,12 @@ export class NegociosService{
     });
     return this.http.get("http://127.0.0.1:8000/pedidosNegocio/" + idNegocio,{ headers: headers })
   }
+
+  actualizarPedido(idPedido: Number)
+  {
+    const body = {
+      idPedido:idPedido
+    }
+    return this.http.post("http://127.0.0.1:8000/pedidosNegocio",body)
+  }
 }
