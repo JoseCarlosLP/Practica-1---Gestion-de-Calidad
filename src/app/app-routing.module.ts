@@ -11,6 +11,7 @@ import { CrearProductoComponent } from './elementos/crear-producto/crear-product
 import { CarritoComponent } from './paginas/carrito/carrito.component';
 import { PedidosClienteComponent } from './paginas/pedidos-cliente/pedidos-cliente.component';
 import { PedidosAdministradorComponent } from './paginas/pedidos-administrador/pedidos-administrador.component';
+import { PerfilComponent } from './paginas/perfil/perfil.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'IniciarSesion', component: IniciarSesionComponent },
   {path:'pedidosCliente', component: PedidosClienteComponent },
   {path:'pedidosNegocio', component: PedidosAdministradorComponent},
+  {path:'perfil',component:PerfilComponent},
   {path:'', redirectTo: '/IniciarSesion', pathMatch: 'full'}//Ruta por defecto
 ];
 

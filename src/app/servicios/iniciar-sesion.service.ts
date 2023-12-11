@@ -57,4 +57,18 @@ export class IniciarSesionService {
     }
     return this.http.post("http://127.0.0.1:8000/registrarN",body)
   }
+  obtenerCliente(){
+    const id=Number(localStorage.getItem('idCli'))
+    console.log("id en servicio",id)
+    return this.http.get("http://127.0.0.1:8000/Usuario/"+id)
+  }
+  actualizarCliente(Username:String,Email:String,Password:String){
+    const id=Number(localStorage.getItem('idCli'))
+    const body = {
+      username:Username,
+      email:Email,
+      password:Password
+    }
+    return this.http.post("http://127.0.0.1:8000/ActualizarUsuario/"+id,body)
+  }
 }

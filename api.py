@@ -40,8 +40,7 @@ def registrar():
   if existing_user:
     return jsonify({'error': 'El usuario ya existe'}), 400
 
-  hashed_password = hashpw(data['password'].encode('utf-8'), gensalt())
-
+  hashed_password = data['password'].encode('utf-8')
   new_user = {
     "_id": obtener_maximo_id("usuarios"),
     'username': data['username'],
@@ -60,7 +59,7 @@ def registrarNegocio():
   if existing_neg:
     return jsonify({'error': 'El negocio ya existe'}), 400
 
-  hashed_password = hashpw(data['password'].encode('utf-8'), gensalt())
+  hashed_password = data['password'].encode('utf-8')
   max_id = obtener_maximo_id("usuarios")
   new_user = {
     "_id": max_id,  # Consultar aqui en la base de datos cual es el id mas alto
@@ -88,8 +87,8 @@ def login():
   data = request.get_json()
   user = usuarios.find_one({'username': data['userOrAdminName']})
 
-  if user and hashpw(data['password'].encode('utf-8'), user['password']) == user[
-    'password']:  # Desencriptamos la contraseña
+  if user and data['password'].encode('utf-8')== user[
+    'password']:  # Verificamos la contraseña  
     user_id = user['_id']
     token = generate_token(user_id)
     if user['tipo'] == 0:
@@ -240,6 +239,20 @@ def insert_product(NegId):
   negocios.update_one({"_id":NegId},{"$push":producto})
   return jsonify({"mensaje": "Actualizado Exitosamente"})
 
+@app.route('/Usuario/<int:idUser>', methods=['GET'])
+def get_usuario(idUser):
+    print(f"Solicitud para /Usuario/{idUser}")
+    usuario = usuarios.find_one({"_id": idUser})
+    usuario['password']=usuario['password'].decode('utf-8')
+    print(f"Usuario encontrado: {usuario}")
+    return usuario
+@app.route('/ActualizarUsuario/<int:idUser>', methods=['POST'])
+def update_usuario(idUser):
+    print(f"Solicitud para /ActualizarUsuario/{idUser}")
+    data=request.get_json()
+    hashed_password = data['password'].encode('utf-8')
+    usuarios.update_one({"_id": idUser}, {"$set":{"username":data['username'],"email":data['email'],"password":hashed_password}})
+    return jsonify({"mensaje": "Actualizado Exitosamente"})
 
 if __name__ == '__main__':
   app.run(debug=True, port=8000)

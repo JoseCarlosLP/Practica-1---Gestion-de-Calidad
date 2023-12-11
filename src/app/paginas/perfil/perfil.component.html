@@ -1,0 +1,14 @@
+
+<button (click)="goBack()">goBack</button>
+<form id="perfilForm">
+    <label for="Username">Usuario:</label>
+    <input type="text" id="Username" name="Username" value="{{cliente.username}}" #Username>
+
+    <label for="Email">Correo:</label>
+    <input type="text" id="Email" name="Email" value="{{cliente.email}}" #Email>
+
+    <label for="Password">Contraseña:</label>
+    <input type="password" id="Password" name="Password" value="{{cliente.password}}" #Password >
+
+    <button type="submit" (click)="save(Username.value, Email.value, Password.value)">Guardar Cambios</button>
+</form>

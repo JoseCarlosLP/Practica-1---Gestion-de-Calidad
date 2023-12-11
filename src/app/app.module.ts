@@ -20,6 +20,7 @@ import { HeaderAdministradorComponent } from './elementos/header-administrador/h
 import { HeaderClienteComponent } from './elementos/header-cliente/header-cliente.component';
 import { PedidosClienteComponent } from './paginas/pedidos-cliente/pedidos-cliente.component';
 import { PedidosAdministradorComponent } from './paginas/pedidos-administrador/pedidos-administrador.component';
+import { PerfilComponent } from './paginas/perfil/perfil.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { PedidosAdministradorComponent } from './paginas/pedidos-administrador/p
     HeaderAdministradorComponent,
     HeaderClienteComponent,
     PedidosClienteComponent,
-    PedidosAdministradorComponent
+    PedidosAdministradorComponent,
+    PerfilComponent
   ],
     imports: [
         BrowserModule,
