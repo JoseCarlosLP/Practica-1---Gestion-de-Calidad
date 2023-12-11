@@ -164,6 +164,19 @@ def insert_pedido():
      "productos": data["productos"]})
   return jsonify({"mensaje": "Pedido Insertado Exitosamente"})
 
+@app.route('/pedidos-usuario', methods=['GET'])
+def get_pedidos_usuario():
+  data = request.headers.get('Authorization')
+  token = str.replace(str(data), 'Bearer ', '')
+  try:
+    jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+  except jwt.ExpiredSignatureError:
+    return jsonify({'error': 'Token expirado'}), 401
+  except jwt.InvalidTokenError:
+    return jsonify({'error': 'Token inválido'}), 401
+
+  return list(pedidos.find())
+
 
 @app.route('/producto/<int:codProd>/<int:idNeg>', methods= ['DELETE'])
 def delete_product(idNeg,codProd):

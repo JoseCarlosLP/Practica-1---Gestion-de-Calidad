@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header-cliente',
@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./header-cliente.component.css']
 })
 export class HeaderClienteComponent {
-
 }

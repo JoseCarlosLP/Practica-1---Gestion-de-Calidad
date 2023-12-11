@@ -18,6 +18,7 @@ import { CrearProductoComponent } from './elementos/crear-producto/crear-product
 import { CarritoComponent } from './paginas/carrito/carrito.component';
 import { HeaderAdministradorComponent } from './elementos/header-administrador/header-administrador.component';
 import { HeaderClienteComponent } from './elementos/header-cliente/header-cliente.component';
+import { PedidosClienteComponent } from './paginas/pedidos-cliente/pedidos-cliente.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { HeaderClienteComponent } from './elementos/header-cliente/header-client
     CarritoComponent,
     HeaderAdministradorComponent,
     HeaderClienteComponent,
+    PedidosClienteComponent
   ],
     imports: [
         BrowserModule,
