@@ -21,7 +21,7 @@ const routes: Routes = [
   { path:'insertarProducto/:id', component: CrearProductoComponent},
   {path:'carrito/:id',component:CarritoComponent},
   {path:'IniciarSesion', component: IniciarSesionComponent },
-  {path:'pedidosCliente/:idCliente', component: PedidosClienteComponent },
+  {path:'pedidosCliente', component: PedidosClienteComponent },
   {path:'', redirectTo: '/IniciarSesion', pathMatch: 'full'}//Ruta por defecto
 ];
 

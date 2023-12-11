@@ -175,7 +175,7 @@ def get_pedidos_cliente(idCliente):
   except jwt.InvalidTokenError:
     return jsonify({'error': 'Token inválido'}), 401
 
-  return list(pedidos.find({"UserId": str(idCliente)}))
+  return jsonify(list(pedidos.find({"UserId": idCliente})))
 
 
 @app.route('/producto/<int:codProd>/<int:idNeg>', methods= ['DELETE'])

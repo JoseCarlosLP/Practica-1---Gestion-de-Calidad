@@ -30,7 +30,7 @@ export class CarritoService {
   guardarCarrito(IdNeg:number,idUser:number){
     const body = {
       idNeg:IdNeg,
-      idUser:localStorage.getItem('idCli'),
+      idUser:Number(localStorage.getItem('idCli')),
       productos:this.carrito,
       total:this.calcularTotal()
     }
