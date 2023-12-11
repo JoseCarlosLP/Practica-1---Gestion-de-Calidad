@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class PedidosClienteComponent implements OnInit {
   pedidos:any={};
-  id_usuario:number=1;
+  idCliente:number=0;
   constructor(private router:Router, private negociosService: NegociosService, private route:ActivatedRoute,private location: Location){}
 
   ngOnInit(): void {
@@ -23,9 +23,9 @@ export class PedidosClienteComponent implements OnInit {
   }
 
   getPedidos(){
-    // this.id_usuario = parseInt(this.route.snapshot.paramMap.get('id_usuario')!, 10);
-    // console.log("ID RECIBIDO: " + this.id_usuario);
-    this.negociosService.obtenerPedidos().subscribe(
+    this.idCliente = parseInt(this.route.snapshot.paramMap.get('idCliente')!, 10);
+    console.log("ID RECIBIDO: " + this.idCliente);
+    this.negociosService.obtenerPedidos(this.idCliente).subscribe(
       (pedidos:Object)=>this.pedidos=pedidos)
   }
 }

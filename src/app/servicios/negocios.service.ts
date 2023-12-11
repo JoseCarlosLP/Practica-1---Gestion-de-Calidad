@@ -50,10 +50,10 @@ export class NegociosService{
   eliminarProducto(codProd:number,id:Number){
     return this.http.delete("http://127.0.0.1:8000/producto/"+codProd+"/"+id);
   }
-  obtenerPedidos() {
+  obtenerPedidos(idCliente: Number) {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem("authToken")}`
     });
-    return this.http.get("http://127.0.0.1:8000/pedidos-usuario",{ headers: headers })
+    return this.http.get("http://127.0.0.1:8000/pedidosCliente/" + idCliente,{ headers: headers })
   }
 }

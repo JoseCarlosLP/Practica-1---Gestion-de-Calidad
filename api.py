@@ -164,8 +164,8 @@ def insert_pedido():
      "productos": data["productos"]})
   return jsonify({"mensaje": "Pedido Insertado Exitosamente"})
 
-@app.route('/pedidos-usuario', methods=['GET'])
-def get_pedidos_usuario():
+@app.route('/pedidosCliente/<int:idCliente>', methods=['GET'])
+def get_pedidos_cliente(idCliente):
   data = request.headers.get('Authorization')
   token = str.replace(str(data), 'Bearer ', '')
   try:
@@ -175,7 +175,7 @@ def get_pedidos_usuario():
   except jwt.InvalidTokenError:
     return jsonify({'error': 'Token inválido'}), 401
 
-  return list(pedidos.find())
+  return list(pedidos.find({"UserId": str(idCliente)}))
 
 
 @app.route('/producto/<int:codProd>/<int:idNeg>', methods= ['DELETE'])

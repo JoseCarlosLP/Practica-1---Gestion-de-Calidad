@@ -6,4 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./header-cliente.component.css']
 })
 export class HeaderClienteComponent {
+  @Input() idCliente: string = "";
 }
