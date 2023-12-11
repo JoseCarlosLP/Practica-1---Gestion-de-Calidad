@@ -10,6 +10,7 @@ import {IniciarSesionComponent} from "./paginas/iniciar-sesion/iniciar-sesion.co
 import { CrearProductoComponent } from './elementos/crear-producto/crear-producto.component';
 import { CarritoComponent } from './paginas/carrito/carrito.component';
 import { PedidosClienteComponent } from './paginas/pedidos-cliente/pedidos-cliente.component';
+import { PedidosAdministradorComponent } from './paginas/pedidos-administrador/pedidos-administrador.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:'carrito/:id',component:CarritoComponent},
   {path:'IniciarSesion', component: IniciarSesionComponent },
   {path:'pedidosCliente', component: PedidosClienteComponent },
+  {path:'pedidosNegocio/:id', component: PedidosAdministradorComponent},
   {path:'', redirectTo: '/IniciarSesion', pathMatch: 'full'}//Ruta por defecto
 ];
 

@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./dnegocio.component.css']
 })
 export class DNegocioComponent {
+  idNeg:number=1;
   negocio:any={};
   constructor(
     private negocioService: NegociosService,
@@ -18,6 +19,8 @@ export class DNegocioComponent {
   ){}
   ngOnInit(){
     this.obtenerNegocio();
+    this.idNeg = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    console.log("ID DEL DNEGOCIO: " + this.idNeg);
   }
   obtenerNegocio(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);

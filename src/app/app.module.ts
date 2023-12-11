@@ -19,6 +19,7 @@ import { CarritoComponent } from './paginas/carrito/carrito.component';
 import { HeaderAdministradorComponent } from './elementos/header-administrador/header-administrador.component';
 import { HeaderClienteComponent } from './elementos/header-cliente/header-cliente.component';
 import { PedidosClienteComponent } from './paginas/pedidos-cliente/pedidos-cliente.component';
+import { PedidosAdministradorComponent } from './paginas/pedidos-administrador/pedidos-administrador.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { PedidosClienteComponent } from './paginas/pedidos-cliente/pedidos-clien
     CarritoComponent,
     HeaderAdministradorComponent,
     HeaderClienteComponent,
-    PedidosClienteComponent
+    PedidosClienteComponent,
+    PedidosAdministradorComponent
   ],
     imports: [
         BrowserModule,
