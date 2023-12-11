@@ -13,10 +13,16 @@ export class NegociosComponent implements OnInit{
 
   datos: any;
   constructor(private router:Router, private negociosService: NegociosService,private carritoService:CarritoService){}
+
   ngOnInit(): void {
     this.negociosService.obtenerNegocios().subscribe(
       data => this.datos = data,
-      error => console.log(error),
+      error => {
+        if (error.error.error == 'Token expirado') {
+          alert("Su sesion ha expirado, inicie sesion nuevamente")
+          this.router.navigate(['/IniciarSesion']);
+        }
+      },
       () => console.log("Fin de los negocios")
     )
     this.carritoService.vaciarCarrito();

@@ -15,6 +15,15 @@ negocios = bd.negocios  # Select the collection name
 pedidos = bd.pedidos  # Select the collection name
 usuarios = bd.usuarios  # Select the collection name
 
+def obtener_maximo_id(coleccion):
+  resultado = bd[coleccion].aggregate([
+    {"$group": {"_id": None, "max_id": {"$max": "$_id"}}}
+  ])
+  max_id = next(resultado, {}).get("max_id", 0)
+  print(max_id)
+  siguiente_id = max_id + 1
+  return siguiente_id
+
 
 # Función para generar el token JWT
 def generate_token(user_id):
@@ -34,25 +43,60 @@ def registrar():
   hashed_password = hashpw(data['password'].encode('utf-8'), gensalt())
 
   new_user = {
-    "_id": data['_id'],
+    "_id": obtener_maximo_id("usuarios"),
     'username': data['username'],
     'password': hashed_password,
-    'email': data['email']
+    'email': data['email'],
+    'tipo': 0
   }
   usuarios.insert_one(new_user)
+  return jsonify({'message': 'Usuario registrado exitosamente'})
+
+
+@app.route('/registrarN', methods=['POST'])
+def registrarNegocio():
+  data = request.get_json()
+  existing_neg = negocios.find_one({'Nombre': data['Nombre']})
+  if existing_neg:
+    return jsonify({'error': 'El negocio ya existe'}), 400
+
+  hashed_password = hashpw(data['password'].encode('utf-8'), gensalt())
+  max_id = obtener_maximo_id("usuarios")
+  new_user = {
+    "_id": max_id,  # Consultar aqui en la base de datos cual es el id mas alto
+    'username': data['AdminName'],
+    'password': hashed_password,
+    'email': data['email'],
+    'tipo': 1
+  }
+  usuarios.insert_one(new_user)
+
+  new_neg = {
+    "_id": obtener_maximo_id("negocios"),
+    'Nombre': data['Nombre'],
+    'Categoria': data['Categoria'],
+    'Imagen': "",
+    'idAdmin': max_id,
+    'Productos': []
+  }
+  negocios.insert_one(new_neg)
   return jsonify({'message': 'Usuario registrado exitosamente'})
 
 
 @app.route('/login', methods=['POST'])
 def login():
   data = request.get_json()
-  user = usuarios.find_one({'username': data['username']})
+  user = usuarios.find_one({'username': data['userOrAdminName']})
 
-  # Verificar si el usuario existe y la contraseña es correcta
-  if user and hashpw(data['password'].encode('utf-8'), user['password']) == user['password']:
+  if user and hashpw(data['password'].encode('utf-8'), user['password']) == user[
+    'password']:  # Desencriptamos la contraseña
     user_id = user['_id']
     token = generate_token(user_id)
-    return jsonify({'token': token})
+    if user['tipo'] == 0:
+      return jsonify({'token': token, 'idUsu': user['_id'], 'idNeg': -1})
+    else:
+      neg = negocios.find_one({'idAdmin': user['_id']})
+      return jsonify({'token': token, 'idNeg': neg['_id']})
 
   return jsonify({'error': 'Credenciales incorrectas'}), 401
 
@@ -60,45 +104,50 @@ def login():
 @app.route('/negocios', methods=['GET'])
 def get_negocios():
   # Verificar el token antes de permitir el acceso a esta ruta
-  # token = request.headers.get('Authorization')
-  # print(token)
-  #token = str.replace(str(data), 'Bearer ', '')
+  data = request.headers.get('Authorization')
+  print(data)
+  token = str.replace(str(data), 'Bearer ', '')
 
-  # try:
-  #   jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
-  # except jwt.ExpiredSignatureError:
-  #   return jsonify({'error': 'Token expirado'}), 401
-  # except jwt.InvalidTokenError:
-  #   return jsonify({'error': 'Token inválido'}), 401
+  try:
+    jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+  except jwt.ExpiredSignatureError:
+    return jsonify({'error': 'Token expirado'}), 401
+  except jwt.InvalidTokenError:
+    print(jwt.InvalidTokenError)
+    return jsonify({'error': 'Token inválido'}), 401
 
   return list(negocios.find())
 
 
 @app.route('/negocios/<int:id>', methods=['GET'])
 def get_negocio(id):
+  data = request.headers.get('Authorization')
+  print(data)
+  token = str.replace(str(data), 'Bearer ', '')
+
+  try:
+    jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+  except jwt.ExpiredSignatureError:
+    return jsonify({'error': 'Token expirado'}), 401
+  except jwt.InvalidTokenError:
+    return jsonify({'error': 'Token inválido'}), 401
+
   return negocios.find_one({"_id": id})
 
 
-# Ruta protegida que requiere autenticación con el token JWT
 @app.route('/negocios/<int:id>/productos', methods=['GET'])
 def get_productos(id):
-  # Verificar el token antes de permitir el acceso a esta ruta
-  # data = request.headers.get('Authorization')
-  # token = str.replace(str(data), 'Bearer ', '')
-  # try:
-  #   jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
-  # except jwt.ExpiredSignatureError:
-  #   return jsonify({'error': 'Token expirado'}), 401
-  # except jwt.InvalidTokenError:
-  #   return jsonify({'error': 'Token inválido'}), 401
+  data = request.headers.get('Authorization')
+  token = str.replace(str(data), 'Bearer ', '')
+  try:
+    jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+  except jwt.ExpiredSignatureError:
+    return jsonify({'error': 'Token expirado'}), 401
+  except jwt.InvalidTokenError:
+    return jsonify({'error': 'Token inválido'}), 401
 
-  # Lógica para obtener productos
   return jsonify(negocios.find_one({"_id": id})['Productos'])
 
-
-# @app.route('/negocios/<int:id>/productos', methods = ['GET'])
-# def get_productos(id):
-#   return negocios.find_one({"_id": id})['Productos']
 
 @app.route('/dnegocio/<int:id>/producto/<int:codProd>', methods=['GET'])
 def get_producto(id, codProd):
@@ -111,15 +160,17 @@ def get_producto(id, codProd):
 def insert_pedido():
   data=request.get_json()
   pedidos.insert_one(
-    {"_id": data["idPedido"], "estadoPed": "pendiente", "montoTotal": data["total"], "negocioId": data["idNeg"],"UserId": data["idUser"],
+    {"_id": obtener_maximo_id('pedidos'), "estadoPed": "pendiente", "montoTotal": data["total"], "negocioId": data["idNeg"],"UserId": data["idUser"],
      "productos": data["productos"]})
   return jsonify({"mensaje": "Pedido Insertado Exitosamente"})
 
-@app.route('/producto/<int:codProd>', methods= ['DELETE'])
-def delete_product(codProd):
-  print("api recibe:", codProd)
-  negocios.update_one({}, {"$pull": {"Productos": {"codProd": codProd}}})
+
+@app.route('/producto/<int:codProd>/<int:idNeg>', methods= ['DELETE'])
+def delete_product(idNeg,codProd):
+  print("api recibe:", codProd, idNeg)
+  negocios.update_one({"_id": idNeg}, {"$pull": {"Productos": {"codProd": codProd}}})
   return jsonify({"mensaje": "Producto eliminado exitosamente"})
+
 
 @app.route('/actualizar/<int:NegId>', methods= ['POST'])
 def update_product(NegId):
@@ -134,6 +185,7 @@ def update_product(NegId):
   }
   negocios.update_one({"_id":NegId,"Productos.codProd":data["codProd"]}, {"$set":producto},upsert=True)
   return jsonify({"mensaje": "Actualizado Exitosamente"})
+
 
 @app.route('/insertarProducto/<int:NegId>', methods= ['POST'])
 def insert_product(NegId):
@@ -150,7 +202,7 @@ def insert_product(NegId):
       'Categoria': data['Categoria'],
       'Precio': data['Precio'],
       'Imagen': data['Imagen'],
-    }      
+    }
   }
   negocios.update_one({"_id":NegId},{"$push":producto})
   return jsonify({"mensaje": "Actualizado Exitosamente"})

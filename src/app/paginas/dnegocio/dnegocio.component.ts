@@ -1,8 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { NegociosService } from 'src/app/servicios/negocios.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Location } from '@angular/common';
-import { IniciarSesionService } from 'src/app/servicios/iniciar-sesion.service';
+
 @Component({
   selector: 'app-dnegocio',
   templateUrl: './dnegocio.component.html',
@@ -14,22 +14,28 @@ export class DNegocioComponent {
     private negocioService: NegociosService,
     private route:ActivatedRoute,
     private location: Location,
-    private iniciarsesionService: IniciarSesionService
+    private router: Router
   ){}
   ngOnInit(){
     this.obtenerNegocio();
   }
-  obtenerNegocio():void{
+  obtenerNegocio(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.negocioService.obtenerNegocio(id).subscribe(
-      (negocio:Object)=>this.negocio=negocio)
+      (negocio: Object) => this.negocio = negocio,
+      error => {
+        if (error.error.error == 'Token expirado') {
+          alert("Su sesion ha expirado, inicie sesion nuevamente")
+          this.router.navigate(['/IniciarSesion']);
+        }
+      })
   }
   eliminar(codProd:number){
     console.log("Entra a funcion Eliminar: ",typeof(codProd));
-    this.negocioService.eliminarProducto(codProd).subscribe(
+    this.negocioService.eliminarProducto(codProd,this.negocio._id).subscribe(
       (response) =>{
         alert("Producto Eliminado Exitosamente");
-        this.ngOnInit()
+        this.ngOnInit();
       },
       (error) => {
         alert("Error al Eliminar Producto");

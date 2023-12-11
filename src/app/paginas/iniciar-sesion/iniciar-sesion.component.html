@@ -2,29 +2,60 @@
   <div class="form-container">
     <h2>Iniciar Sesión</h2>
     <form id="loginForm">
-      <label for="username">Usuario:</label>
-      <input type="text" id="username" name="username" required #username>
+      <label for="username">Usuario/Administrador:</label>
+      <input type="text" id="username" name="username" required #userOrAdminName>
 
       <label for="password">Contraseña:</label>
-      <input type="password" id="password" name="password" required #password>
+      <input type="password" id="password" name="password" required #password >
 
-      <button type="submit" (click)="iniciarSesion(username.value, password.value)">Iniciar Sesión</button>
+      <button type="submit" (click)="iniciarSesion(userOrAdminName.value, password.value)">Iniciar Sesión</button>
     </form>
+
+    <div class="signup-link">
+      <p>No tienes cuenta? <a (click)="mostrarRegistro()">Regístrate gratis</a></p>
+    </div>
   </div>
 
-  <div class="form-container">
+  <div class="form-container registro-form" *ngIf="mostrarRegistroForm">
     <h2>Registrarse</h2>
-    <form id="signupForm" >
+    <form id="signupForm">
       <label for="newUsername">Nuevo Usuario:</label>
-      <input type="text" id="newUsername" name="newUsername" required #newUsername>
+      <input type="text" id="newUsername" name="newUsername" #newUsername required>
+
+      <label for="newEmail">Nuevo Correo:</label>
+      <input type="text" id="newEmail" name="newEmail" #newEmail required>
 
       <label for="newPassword">Nueva Contraseña:</label>
-      <input type="password" id="newPassword" name="newPassword" required #newPassword>
+      <input type="password" id="newPassword" name="newPassword" #newPassword required >
 
-      <label for="newPassword">Nuevo Correo:</label>
-      <input type="text" id="newEmail" name="newEmail" required #newEmail>
+      <button type="submit" (click)="registrar(newUsername.value, newPassword.value, newEmail.value)">Registrarse</button>
+    </form>
 
-      <button type="submit" (click)="registrar(newUsername.value, newPassword.value,newEmail.value)">Registrarse</button>
+    <div class="registro-negocio-link">
+      <p>¿Quieres registrar tu negocio? <a (click)="mostrarRegistroNegocio()">Haz click aquí</a></p>
+    </div>
+  </div>
+
+  <div class="form-container registro-negocio-form" *ngIf="mostrarRegistroNegocioForm">
+    <h2>Registrar Negocio</h2>
+    <form id="registroNegocioForm">
+      <label for="nombreNegocio">Nombre del Negocio:</label>
+      <input type="text" id="nombreNegocio" name="nombreNegocio" required #nombreNegocio>
+
+      <label for="adminNegocio">Nombre del Administrador:</label>
+      <input type="text" id="adminNegocio" name="adminNegocio" required #adminNegocio>
+
+      <label for="emailNegocio">Correo del Negocio:</label>
+      <input type="text" id="emailNegocio" name="emailNegocio" required #emailNegocio>
+
+      <label for="categoriaNegocio">Categoría del Negocio:</label>
+      <input type="text" id="categoriaNegocio" name="categoriaNegocio" required #categoriaNegocio>
+
+      <label for="passwordNegocio">Contraseña del Negocio:</label>
+      <input type="password" id="passwordNegocio" name="passwordNegocio" required #passwordNegocio>
+
+      <button type="submit" (click)="registrarNegocio(nombreNegocio.value, adminNegocio.value, passwordNegocio.value, emailNegocio.value, categoriaNegocio.value)">Registrar Negocio</button>
+      <p><a (click)="volverARegistroCliente()">Volver al registro</a></p>
     </form>
   </div>
 </div>

@@ -24,21 +24,17 @@ export class NegocioComponent {
     this.location.back();
   }
   obtenerNegocio():void{
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.id=id;
-    this.negocioService.obtenerNegocio(id).subscribe(
+    this.id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    this.negocioService.obtenerNegocio(this.id).subscribe(
       (negocio:Object)=>this.negocio=negocio)
   }
-  obtenerVista():void{
-    const vista = this.route.snapshot.paramMap.get('vista');
-  }
+
   comprarProducto(producto:any) {
     alert("producto añadido");
-    const codProd=producto.codProd;
-    const Nombre=producto.Nombre;
+    const codProd = producto.codProd;
+    const Nombre = producto.Nombre;
     const cantidad = 1;
     const precio = producto.Precio;
-    this.carritoService.agregarAlCarrito(codProd,Nombre, cantidad, precio);
+    this.carritoService.agregarAlCarrito(codProd, Nombre, cantidad, precio);
   }
-  
 }

@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<app-header-cliente></app-header-cliente>
+<!--Esto se ve mal creo por que la estructura de este componente no debeeria de tener las etiquetas html, head, etc-->
+<h1>Bienvenido a la Página Oficial de la Plaza de Comidas</h1>
 
-    <h1>Bienvenido a la Página Oficial de la Plaza de Comidas</h1>
+<p>Gracias por usar nuestra página. Aquí puedes ver el catálogo de productos de todos nuestros restaurantes y hacer tu pedido.</p>
 
-    <p>Gracias por usar nuestra página. Aquí puedes ver el catálogo de productos de todos nuestros restaurantes y hacer tu pedido.</p>
-
-    <button [routerLink]='["/negocios"]'>Ver Negocios</button>
-    <img src="/assets/Logo Página.png" alt="Logo de la tienda">
+<button [routerLink]='["/negocios"]'>Ver Negocios</button>
+<img src="/assets/Logo Página.png" alt="Logo de la tienda">
 
 </body>
 </html>
