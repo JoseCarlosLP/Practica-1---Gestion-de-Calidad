@@ -1,9 +1,11 @@
+<app-header-cliente></app-header-cliente>
 <div class="nombreNegocio">
     <h1>{{negocio.Nombre | uppercase}}</h1>
 </div>
 
-<button (click)="goBack()">goBack</button>
-<button [routerLink]='"/carrito/"+id'>Carrito</button>
+<button class="Volver" (click)="goBack()">Volver</button>&nbsp;
+<button class="Carrito" [routerLink]='"/carrito/"+id'>Ir al Carrito</button>
+
 <h2>Productos Disponibles:</h2>
 <div class="grid-container">
     <div *ngFor="let producto of negocio.Productos" class="producto">

@@ -1,0 +1,49 @@
+button {
+    padding: 15px 30px;
+    font-size: 1em;
+    background-color: #e44d26;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #c5371f;
+}
+
+#perfilForm {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    padding: 15px 30px;
+    font-size: 1em;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #219d49;
+}

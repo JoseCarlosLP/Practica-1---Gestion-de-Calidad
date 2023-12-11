@@ -1,3 +1,33 @@
+button.Volver {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
+button.Volver:hover {
+  background-color: #c0392b;
+}
+
+button.Carrito {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  background-color: #fa4402;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.Carrito:hover {
+  background-color: #b92929;
+}
+
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
@@ -18,8 +48,6 @@
   color: #010101;
   font-size: 30px;
   font-weight: bold;
-  /* font-family: 'Times New Roman', Times, serif; Tipo de letra estilo carta */
-  /* font-style: italic; Itálica */
 }
 
 .producto .Descripcion {
@@ -59,10 +87,6 @@ a{
   gap: 10px;
 }
 
-/* .producto .editar {
-  display: none;
-} */
-
 .producto .botones button {
   padding: 10px;
   border: none;
@@ -75,18 +99,4 @@ a{
   top:99%;
   bottom: 1px;
 }
-
-@media (max-width:500px){
-  .producto .Nombre{
-    font-size: 20px;
-  }
-}
-
-@media (max-width:670px){
-  .container{
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
 

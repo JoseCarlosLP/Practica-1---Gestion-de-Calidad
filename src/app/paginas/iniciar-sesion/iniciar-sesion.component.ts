@@ -37,6 +37,7 @@ export class IniciarSesionComponent implements OnInit{
           }
         },
         (error) => {
+          console.log(error);
           alert("Error al iniciar sesion");
         }
       )

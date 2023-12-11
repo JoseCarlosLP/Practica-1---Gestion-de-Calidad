@@ -31,18 +31,27 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease-in-out, border 0.3s ease-in-out; /* Añadido 'border' a la transición */
-    margin-bottom: 10px;    
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out, border 0.3s ease-in-out;
+    margin-bottom: 10px;
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
 }
 
 button:hover {
     background-color: #c0392b;
     transform: scale(1.1);
-    border: 2px solid #fff; /* Añadido el borde blanco al hacer hover */
+    border: 2px solid #fff;
 }
 
+.imagen-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-img {
-    max-width: 20%;
-    height: auto;
+.imagen-container img {
+    width: 350px;
+    height: 315px;
 }

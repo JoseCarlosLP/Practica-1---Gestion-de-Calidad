@@ -1,0 +1,75 @@
+button.Volver {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+button.Volver:hover {
+    background-color: #c0392b;
+}
+
+h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.pedido {
+    background-color: #fbfdfe;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(164, 63, 63, 0.1);
+    border-radius: 15px;
+    position: relative;
+}
+
+.informacion {
+    width: 100%;
+}
+
+.Estado {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000000;
+}
+
+.Monto {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.producto {
+    margin-top: 10px;
+}
+
+.NombreProducto {
+    font-weight: bold;
+}
+
+.Cantidad,
+.Precio {
+    font-size: 1em;
+    color: #333;
+}
+
+.Actualizar {
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #da7400;
+    color: #fff;
+    margin-top: 10px;
+}

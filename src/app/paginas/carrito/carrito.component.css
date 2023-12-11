@@ -1,0 +1,95 @@
+button.Volver {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button.Volver:hover {
+    background-color: #c0392b;
+}
+
+div.producto {
+    background-color: #fbfdfe;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(164, 63, 63, 0.1);
+    border-radius: 15px;
+    margin-bottom: 10px;
+}.producto {
+  background-color: #fbfdfe;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(164, 63, 63, 0.1);
+  border-radius: 15px;
+}
+  .producto .Nombre {
+    color: #010101;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+  .producto .Descripcion {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .producto .Precio {
+    font-size: 20px;
+    color: #cb5d13;
+    font-weight: bold;
+  }
+
+
+
+
+
+
+.producto p {
+    margin: 0;
+}
+
+.producto .Total {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+p.TotalCarrito {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+button.Cancelar,
+button.Confirmar {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button.Cancelar {
+    background-color: #ff8400;
+    color: #fff;
+}
+
+button.Cancelar:hover {
+    background-color: #2980b9;
+}
+
+button.Confirmar {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+button.Confirmar:hover {
+    background-color: #27ae60;
+}

@@ -1,6 +1,7 @@
+<app-header-administrador></app-header-administrador>
 <div *ngIf="producto">
     
-    <button type="button" (click)="goBack()">go back</button>
+    <button type="button" (click)="goBack()">Volver</button>
     <h2>{{producto.Nombre | uppercase}} Detalles</h2>
         <div class="container">
             <div class="Detalles">
@@ -30,7 +31,7 @@
                         <label for="Imagen">URL Imagen: </label>
                         <input id="Imagen" name="Imagen" type="text" value="{{producto.Imagen}}" #Imagen/>
                     </div>
-                    <button type="submit" (click)="save(codProd.value,Nombre.value, Descripcion.value, Categoria.value, Precio.value, Imagen.value)">guardar</button>
+                    <button type="submit" (click)="save(codProd.value,Nombre.value, Descripcion.value, Categoria.value, Precio.value, Imagen.value)">Guardar</button>
                 </form>
                 
             </div>

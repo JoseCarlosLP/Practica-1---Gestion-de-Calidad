@@ -1,19 +1,19 @@
 <app-header-administrador></app-header-administrador>
 
-<button (click)="goBack()">goBack</button>
+<button class="Volver" (click)="goBack()">Volver</button>
 <h2>Pedidos Realizados:</h2>
 <div class="grid-container">
     <div *ngFor="let pedido of pedidos" class="pedido">
           <div class="container">
               <div class="informacion">
-                  <div class="Estado">{{pedido.estadoPed}}</div>
-                  <div class="Monto Total">{{pedido.montoTotal}}</div><br>
+                  <div class="Estado">Estado: {{pedido.estadoPed}}</div>
+                  <div class="Monto Total">Monto Total: {{pedido.montoTotal}}</div><br>
                   <div *ngFor="let producto of pedido.productos" class="producto">
-                    <div class="NombreProducto">{{producto.nombre}}</div>
-                    <div class="Cantidad">{{producto.cantidad}}</div>
-                    <div class="Precio">{{producto.precio}}</div><br>
+                    <div class="NombreProducto">Producto: {{producto.nombre}}</div>
+                    <div class="Cantidad">Cantidad: {{producto.cantidad}}</div>
+                    <div class="Precio">Precio Unitario: {{producto.precio}} Bs.    </div><br>
               </div>
           </div>
-          <button (click)="cambiarEstado(pedido._id)">Actualizar Estado</button>
+          <button class="Actualizar" (click)="cambiarEstado(pedido._id)">Actualizar Estado</button>
     </div>
 </div>

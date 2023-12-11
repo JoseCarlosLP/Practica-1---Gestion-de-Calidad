@@ -1,44 +1,70 @@
+.nombreNegocio {
+  text-align: center;
+}
+
+.nombreNegocio h1 {
+  color: #e44d26;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+button[type="button"] {
+  padding: 15px 30px;
+  font-size: 1em;
+  background-color: #e44d26;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+button[type="button"]:hover {
+  background-color: #c5371f;
+}
+
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
-    gap: 20px;
-    
-    align-content:space-between;
-  }
-  
-  .producto {
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .producto .Nombre {
-    font-size: 24px;
-    color: #e44d26; 
-  }
-  
-  .producto .Descripcion {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #333;
-  }
-  a{
-    text-decoration: none;
-  }
-  .nombreNegocio{
-    text-align: center;
-  }
-  .container{
-    display: flex;
-    align-content: space-between;
-  }
-  .informacion{
-    width: 100%;
-  }
-  .imagen{
-    border-left: 0;
-    max-width: 100%;
-    max-height: 100px;
-    margin-top: 10px;
-    border-radius: 8px;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.producto {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.producto .Nombre {
+  font-size: 1.2em;
+  color: #e44d26;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.producto .Descripcion {
+  font-size: 1em;
+  color: #555;
+  line-height: 1.4;
+}
+
+
+.imagen img {
+  max-width: 100%;
+  max-height: 100px;
+  border-radius: 8px;
+}
+
+button[type="submit"] {
+  padding: 15px 30px;
+  font-size: 1em;
+  background-color: #e50101;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

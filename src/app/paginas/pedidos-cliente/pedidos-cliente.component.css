@@ -1,0 +1,76 @@
+button.Volver {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: block;
+}
+
+button.Volver:hover {
+    background-color: #c0392b;
+}
+
+h2 {
+    font-size: 3em;
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 300px));
+    gap: 20px;
+    align-content: space-between;
+    padding: 20px;
+}
+
+.pedido {
+    display: flex;
+    align-content: space-between;
+}
+
+.informacion {
+    width: 100%;
+}
+
+.Estado {
+    background-color: #ffffff;
+    padding: 10px; 
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.MontoTotal {
+    background-color: #ffffff; 
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.producto {
+    background-color: #fbfdfe;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(164, 63, 63, 0.1);
+    border-radius: 15px;
+}
+
+.producto .NombreProducto {
+    color: #010101;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.producto .Cantidad {
+    font-size: 16px;
+    color: #333;
+}
+
+.producto .Precio {
+    font-size: 20px;
+    color: #cb5d13;
+    font-weight: bold;
+}

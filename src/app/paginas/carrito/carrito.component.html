@@ -1,7 +1,7 @@
+<app-header-cliente></app-header-cliente>
+<button class="Volver" (click)="goBack()">Volver</button>
 
-<button (click)="goBack()">goBack</button>
-
-<div *ngFor="let item of carrito">
+<div *ngFor="let item of carrito" class="producto">
     <p>Producto: {{ item.codProd }}</p>
     <p>Nombre: {{ item.nombre }}</p>
     <p>Cantidad: {{ item.cantidad }}</p>
@@ -11,5 +11,5 @@
   
   <p>Total del carrito: {{ total }}</p>
 
-  <button (click)="vaciarCarrito()">Cancelar</button>
-  <button (click)="confirmarCarrito()">Confirmar</button>
+  <button class="Cancelar" (click)="vaciarCarrito()">Cancelar</button>
+  <button class="Confirmar" (click)="confirmarCarrito()">Confirmar</button>
