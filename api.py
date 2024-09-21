@@ -4,12 +4,14 @@ import jwt
 from datetime import datetime, timedelta
 from bcrypt import hashpw, gensalt
 from flask_cors import CORS  # Para problemas de CORS
-
+from dotenv import load_dotenv #Para usar .env
+import os
 app = Flask(__name__)
 CORS(app)  # para problemas de CORS
 
-app.config['SECRET_KEY'] = 'your-secret-key'
-conex = MongoClient("mongodb://127.0.0.1:27017")  # host uri
+app.config['APP_CONFIG'] = os.getenv('APP_CONFIG')
+conex = MongoClient(os.getenv('DATABASE_URL'))
+
 bd = conex.MyDB  # Select the database
 negocios = bd.negocios  # Select the collection name
 pedidos = bd.pedidos  # Select the collection name
