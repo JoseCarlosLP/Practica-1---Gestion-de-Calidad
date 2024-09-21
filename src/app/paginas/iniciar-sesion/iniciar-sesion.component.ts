@@ -58,7 +58,7 @@ export class IniciarSesionComponent implements OnInit{
     } else alert ("Complete todos los campos");
   }
 
-  registrarNegocio(nombreNeg:String, adminstrador:string,password:string,email:string,categoria:string){
+  registrarNegocio(nombreNeg:string, adminstrador:string,password:string,email:string,categoria:string){
     if (nombreNeg!="" && adminstrador != "" && password != "" && email != "" && categoria != "") {
       this.iniciarSesionService.registrarNegocio(nombreNeg,adminstrador,password,email,categoria).subscribe(
         (response) => {
