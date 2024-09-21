@@ -6,6 +6,7 @@ from bcrypt import hashpw, gensalt
 from flask_cors import CORS  # Para problemas de CORS
 from dotenv import load_dotenv #Para usar .env
 import os
+from datetime import datetime, timezone
 app = Flask(__name__)
 CORS(app)  # para problemas de CORS
 
@@ -29,9 +30,11 @@ def obtener_maximo_id(coleccion):
 
 # Función para generar el token JWT
 def generate_token(user_id):
-  expiration_time = datetime.utcnow() + timedelta(hours=1)
+  datetime.now(timezone.utc) # Compliant
+  timestamp = 1571595618.0
+  expiration_time = datetime.fromtimestamp(timestamp, timezone.utc)+ timedelta(hours=1)
   payload = {'user_id': user_id, 'exp': expiration_time}
-  token = jwt.encode(payload, app.config['SECRET_KEY'], algorithm='HS256')
+  token = jwt.encode(payload, app.config['APP_CONFIG'], algorithm='HS256')
   return token
 
 
@@ -110,7 +113,7 @@ def get_negocios():
   token = str.replace(str(data), 'Bearer ', '')
 
   try:
-    jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+    jwt.decode(token, app.config['APP_CONFIG'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
     return jsonify({'error': 'Token expirado'}), 401
   except jwt.InvalidTokenError:
@@ -127,7 +130,7 @@ def get_negocio(id):
   token = str.replace(str(data), 'Bearer ', '')
 
   try:
-    jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+    jwt.decode(token, app.config['APP_CONFIG'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
     return jsonify({'error': 'Token expirado'}), 401
   except jwt.InvalidTokenError:
@@ -141,7 +144,7 @@ def get_productos(id):
   data = request.headers.get('Authorization')
   token = str.replace(str(data), 'Bearer ', '')
   try:
-    jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+    jwt.decode(token, app.config['APP_CONFIG'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
     return jsonify({'error': 'Token expirado'}), 401
   except jwt.InvalidTokenError:
@@ -170,7 +173,7 @@ def get_pedidos_cliente(idCliente):
   data = request.headers.get('Authorization')
   token = str.replace(str(data), 'Bearer ', '')
   try:
-    jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+    jwt.decode(token, app.config['APP_CONFIG'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
     return jsonify({'error': 'Token expirado'}), 401
   except jwt.InvalidTokenError:
@@ -183,7 +186,7 @@ def get_pedidos_negocio(idNegocio):
   data = request.headers.get('Authorization')
   token = str.replace(str(data), 'Bearer ', '')
   try:
-    jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+    jwt.decode(token, app.config['APP_CONFIG'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
     return jsonify({'error': 'Token expirado'}), 401
   except jwt.InvalidTokenError:
