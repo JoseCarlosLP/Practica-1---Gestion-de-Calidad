@@ -21,7 +21,7 @@ export class IniciarSesionComponent implements OnInit{
     this.iniciarSesionService.eliminarToken();
   }
 
-  iniciarSesion(userOrAdminName:String,password:string){
+  iniciarSesion(userOrAdminName:string,password:string){
     if (userOrAdminName!="" && password != "") {
       this.iniciarSesionService.iniciarSesion(userOrAdminName,password).subscribe(
         (response : RespuestaLogin) =>{
