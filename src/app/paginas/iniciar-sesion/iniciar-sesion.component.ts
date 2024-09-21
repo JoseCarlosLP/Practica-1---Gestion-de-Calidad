@@ -21,7 +21,7 @@ export class IniciarSesionComponent implements OnInit{
     this.iniciarSesionService.eliminarToken();
   }
 
-  iniciarSesion(userOrAdminName:String,password:String){
+  iniciarSesion(userOrAdminName:String,password:string){
     if (userOrAdminName!="" && password != "") {
       this.iniciarSesionService.iniciarSesion(userOrAdminName,password).subscribe(
         (response : RespuestaLogin) =>{
@@ -30,7 +30,7 @@ export class IniciarSesionComponent implements OnInit{
           if(response.idNeg==-1) {
             this.router.navigate(['/inicio']);
             localStorage.setItem("idCli",String(response.idUsu));
-          } else 
+          } else
           {
             this.router.navigate(['/dnegocio']);
             localStorage.setItem("idNeg",String(response.idNeg));
