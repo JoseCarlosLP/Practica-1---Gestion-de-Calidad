@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import { NegociosService } from 'src/app/servicios/negocios.service';
 
 @Component({
