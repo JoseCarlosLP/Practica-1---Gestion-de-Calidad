@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NegociosService } from 'src/app/servicios/negocios.service';
 
 @Component({
   selector: 'app-header-administrador',
