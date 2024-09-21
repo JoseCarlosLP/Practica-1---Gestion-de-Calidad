@@ -15,6 +15,8 @@ negocios = bd.negocios  # Select the collection name
 pedidos = bd.pedidos  # Select the collection name
 usuarios = bd.usuarios  # Select the collection name
 
+TOKEN_TYPE = 'Bearer '
+
 def obtener_maximo_id(coleccion):
   resultado = bd[coleccion].aggregate([
     {"$group": {"_id": None, "max_id": {"$max": "$_id"}}}
@@ -88,7 +90,7 @@ def login():
   user = usuarios.find_one({'username': data['userOrAdminName']})
 
   if user and data['password'].encode('utf-8')== user[
-    'password']:  # Verificamos la contraseña  
+    'password']:  # Verificamos la contraseña
     user_id = user['_id']
     token = generate_token(user_id)
     if user['tipo'] == 0:
@@ -105,7 +107,7 @@ def get_negocios():
   # Verificar el token antes de permitir el acceso a esta ruta
   data = request.headers.get('Authorization')
   print(data)
-  token = str.replace(str(data), 'Bearer ', '')
+  token = str.replace(str(data), TOKEN_TYPE, '')
 
   try:
     jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
@@ -122,7 +124,7 @@ def get_negocios():
 def get_negocio(id):
   data = request.headers.get('Authorization')
   print(data)
-  token = str.replace(str(data), 'Bearer ', '')
+  token = str.replace(str(data), TOKEN_TYPE, '')
 
   try:
     jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
@@ -137,7 +139,7 @@ def get_negocio(id):
 @app.route('/negocios/<int:id>/productos', methods=['GET'])
 def get_productos(id):
   data = request.headers.get('Authorization')
-  token = str.replace(str(data), 'Bearer ', '')
+  token = str.replace(str(data), TOKEN_TYPE, '')
   try:
     jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
@@ -166,7 +168,7 @@ def insert_pedido():
 @app.route('/pedidosCliente/<int:idCliente>', methods=['GET'])
 def get_pedidos_cliente(idCliente):
   data = request.headers.get('Authorization')
-  token = str.replace(str(data), 'Bearer ', '')
+  token = str.replace(str(data), TOKEN_TYPE, '')
   try:
     jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
@@ -179,7 +181,7 @@ def get_pedidos_cliente(idCliente):
 @app.route('/pedidosNegocio/<int:idNegocio>', methods=['GET'])
 def get_pedidos_negocio(idNegocio):
   data = request.headers.get('Authorization')
-  token = str.replace(str(data), 'Bearer ', '')
+  token = str.replace(str(data), TOKEN_TYPE, '')
   try:
     jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
