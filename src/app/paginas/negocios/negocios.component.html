@@ -1,11 +1,3 @@
-<!-- <div *ngFor="let negocio of datos" class="negocio">
-    <app-detalle-negocio
-    [Nombre]= "negocio.Nombre"
-    [Categoria]= "negocio.Categoria"
-    [Imagen]= "negocio.Imagen"
-    (click)="mostrar($event)"
-    ></app-detalle-negocio>
-</div> -->
 <app-header-cliente></app-header-cliente>
 <mat-grid-list class="list-producto" cols="{{4}}" rowHeight="190px">
   <mat-grid-tile *ngFor="let negocio of datos" class="negocio"
