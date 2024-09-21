@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {IniciarSesionService} from "../../servicios/iniciar-sesion.service";
+import {IniciarSesionService, RespuestaLogin} from "../../servicios/iniciar-sesion.service";
 import {Router} from "@angular/router";
-import {RespuestaLogin} from "../../servicios/iniciar-sesion.service";
 import {Location} from "@angular/common";
 
 @Component({
