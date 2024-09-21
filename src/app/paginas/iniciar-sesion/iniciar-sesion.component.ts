@@ -44,7 +44,7 @@ export class IniciarSesionComponent implements OnInit{
     } else alert ("Complete todos los campos");
   }
 
-  registrar(username:String,password:string,email:String){
+  registrar(username:String,password:string,email:string){
     if (username!="" && password != "" && email != "") {
       this.iniciarSesionService.registrar(username, password, email).subscribe(
         (response) => {
