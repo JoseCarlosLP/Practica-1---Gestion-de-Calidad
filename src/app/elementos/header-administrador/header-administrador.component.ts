@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-administrador.component.css']
 })
 export class HeaderAdministradorComponent implements OnInit{
-  id: Number = 0;
+  id: number = 0;
   ngOnInit(): void {
     this.id = Number(localStorage.getItem("idNeg"));
     console.log("ID DEL NEGOCIO EN EL HEADER: " + this.id)
