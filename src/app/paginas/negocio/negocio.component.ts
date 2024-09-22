@@ -28,7 +28,7 @@ export class NegocioComponent {
     if (idString === null) {
       throw new Error("El parámetro 'id' no está presente en la URL.");
     }
-    const id = parseInt(idString, 10);
+    this.id = parseInt(idString, 10);
     
     this.negocioService.obtenerNegocio(this.id).subscribe(
       (negocio:Object)=>this.negocio=negocio)
