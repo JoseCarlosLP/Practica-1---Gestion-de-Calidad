@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { NegociosService } from 'src/app/servicios/negocios.service';
@@ -19,8 +19,16 @@ export class DetalleProductoComponent {
     this.obtenerProducto();
   }
   obtenerProducto():void{
-    const codProd = parseInt(this.route.snapshot.paramMap.get('codProd')!, 10);
-    const idNeg = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    const codProdString = this.route.snapshot.paramMap.get('codProd');
+    if (codProdString === null) {
+      throw new Error("El parámetro 'codProd' no está presente en la URL.");
+    }
+    const codProd = parseInt(codProdString, 10);
+    const idNegString = this.route.snapshot.paramMap.get('id');
+    if (idNegString === null) {
+      throw new Error("El parámetro 'id' no está presente en la URL.");
+    }
+    const idNeg = parseInt(idNegString, 10);
     this.idNeg=idNeg;
     this.negocioService.obtenerProducto(idNeg,codProd).subscribe(
       (producto:Object)=>this.producto=producto)

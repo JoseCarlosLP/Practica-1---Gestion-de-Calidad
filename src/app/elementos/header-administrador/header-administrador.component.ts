@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { NegociosService } from 'src/app/servicios/negocios.service';
 
 @Component({
   selector: 'app-header-administrador',
@@ -9,7 +6,7 @@ import { NegociosService } from 'src/app/servicios/negocios.service';
   styleUrls: ['./header-administrador.component.css']
 })
 export class HeaderAdministradorComponent implements OnInit{
-  id: Number = 0;
+  id: number = 0;
   ngOnInit(): void {
     this.id = Number(localStorage.getItem("idNeg"));
     console.log("ID DEL NEGOCIO EN EL HEADER: " + this.id)

@@ -19,7 +19,12 @@ export class CarritoComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-      const idNeg = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+      const idNegString = this.route.snapshot.paramMap.get('id');
+      if (idNegString === null) {
+        throw new Error("El parámetro 'id' no está presente en la URL.");
+      }
+      const idNeg = parseInt(idNegString, 10);
+    
       this.idNeg=idNeg;
       console.log("negocioId:", this.idNeg)
       this.carrito = this.carritoService.obtenerCarrito();
