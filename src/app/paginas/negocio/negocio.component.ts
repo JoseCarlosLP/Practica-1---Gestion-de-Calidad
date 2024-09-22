@@ -24,7 +24,12 @@ export class NegocioComponent {
     this.location.back();
   }
   obtenerNegocio():void{
-    this.id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    const idString = this.route.snapshot.paramMap.get('id');
+    if (idString === null) {
+      throw new Error("El parámetro 'id' no está presente en la URL.");
+    }
+    const id = parseInt(idString, 10);
+    
     this.negocioService.obtenerNegocio(this.id).subscribe(
       (negocio:Object)=>this.negocio=negocio)
   }
