@@ -1,12 +1,11 @@
 from flask import Flask, jsonify, request
 from pymongo import MongoClient
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta,timezone
 from bcrypt import hashpw, gensalt
 from flask_cors import CORS  # Para problemas de CORS
 from dotenv import load_dotenv #Para usar .env
 import os
-from datetime import datetime, timezone
 app = Flask(__name__)
 CORS(app)  # para problemas de CORS
 
@@ -30,9 +29,7 @@ def obtener_maximo_id(coleccion):
 
 # Función para generar el token JWT
 def generate_token(user_id):
-  datetime.now(timezone.utc) # Compliant
-  timestamp = 1571595618.0
-  expiration_time = datetime.fromtimestamp(timestamp, timezone.utc)+ timedelta(hours=1)
+  expiration_time = datetime.now(timezone.utc) + timedelta(hours=1)
   payload = {'user_id': user_id, 'exp': expiration_time}
   token = jwt.encode(payload, app.config['APP_CONFIG'], algorithm='HS256')
   return token
