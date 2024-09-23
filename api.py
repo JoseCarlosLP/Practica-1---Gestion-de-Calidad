@@ -180,8 +180,8 @@ def get_pedidos_cliente(idCliente):
 
   return jsonify(list(pedidos.find({"UserId": idCliente})))
 
-@app.route('/pedidosNegocio/<int:idNegocio>', methods=['GET'])
-def get_pedidos_negocio(idNegocio):
+@app.route('/pedidosNegocio/<int:id_negocio>', methods=['GET'])
+def get_pedidos_negocio(id_negocio):
   data = request.headers.get('Authorization')
   token = str.replace(str(data), TOKEN_TYPE, '')
   try:
@@ -191,7 +191,7 @@ def get_pedidos_negocio(idNegocio):
   except jwt.InvalidTokenError:
     return jsonify({'error': 'Token inválido'}), 401
 
-  return jsonify(list(pedidos.find({"negocioId": idNegocio})))
+  return jsonify(list(pedidos.find({"negocioId": id_negocio})))
 
 @app.route("/pedidosNegocio",  methods=['POST'])
 def actualizar_estado_pedido():
