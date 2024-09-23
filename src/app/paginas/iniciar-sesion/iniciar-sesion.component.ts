@@ -26,13 +26,13 @@ export class IniciarSesionComponent implements OnInit{
         (response : RespuestaLogin) =>{
           alert("Sesion iniciada existosamente");
           this.iniciarSesionService.guardarToken(response.token);
-          if(response.idNeg==-1) {
+          if(response.id_neg==-1) {
             this.router.navigate(['/inicio']);
             localStorage.setItem("idCli",String(response.idUsu));
           } else
           {
             this.router.navigate(['/dnegocio']);
-            localStorage.setItem("idNeg",String(response.idNeg));
+            localStorage.setItem("id_neg",String(response.id_neg));
           }
         },
         (error) => {

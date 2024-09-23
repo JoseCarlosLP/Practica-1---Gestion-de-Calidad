@@ -18,7 +18,7 @@ export class DNegocioComponent {
     private router: Router
   ){}
   ngOnInit(){
-    this.id = Number(localStorage.getItem("idNeg"));
+    this.id = Number(localStorage.getItem("id_neg"));
     this.obtenerNegocio();
     console.log("ID DEL DNEGOCIO: " + this.id);
   }

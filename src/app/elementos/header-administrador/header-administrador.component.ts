@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderAdministradorComponent implements OnInit{
   id: number = 0;
   ngOnInit(): void {
-    this.id = Number(localStorage.getItem("idNeg"));
+    this.id = Number(localStorage.getItem("id_neg"));
     console.log("ID DEL NEGOCIO EN EL HEADER: " + this.id)
   }
 }

@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CarritoComponent implements OnInit {
   carrito: any = {};
   total:number=0;
-  idNeg:number=0;
+  id_neg:number=0;
   constructor(
     private carritoService: CarritoService,
     private location: Location,
@@ -19,14 +19,14 @@ export class CarritoComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-      const idNegString = this.route.snapshot.paramMap.get('id');
-      if (idNegString === null) {
+      const id_negString = this.route.snapshot.paramMap.get('id');
+      if (id_negString === null) {
         throw new Error("El parámetro 'id' no está presente en la URL.");
       }
-      const idNeg = parseInt(idNegString, 10);
+      const id_neg = parseInt(id_negString, 10);
     
-      this.idNeg=idNeg;
-      console.log("negocioId:", this.idNeg)
+      this.id_neg=id_neg;
+      console.log("negocioId:", this.id_neg)
       this.carrito = this.carritoService.obtenerCarrito();
       this.actualizarTotal();
       
@@ -44,7 +44,7 @@ export class CarritoComponent implements OnInit {
   }
   confirmarCarrito():void{
     const idUser=1;
-    this.carritoService.guardarCarrito(this.idNeg,idUser).subscribe(
+    this.carritoService.guardarCarrito(this.id_neg,idUser).subscribe(
       (response) =>{
         alert("Pedido Realizado Exitosamente");
         this.goBack()

@@ -21,8 +21,8 @@ export class NegociosService{
     });
     return this.http.get(url,{headers: headers})
   }
-  obtenerProducto(idNeg:number,cod_prod:Number){
-    const url=`${"http://127.0.0.1:8000/dnegocio"}/${idNeg}${"/producto"}/${cod_prod}`;
+  obtenerProducto(id_neg:number,cod_prod:Number){
+    const url=`${"http://127.0.0.1:8000/dnegocio"}/${id_neg}${"/producto"}/${cod_prod}`;
     return this.http.get(url)
   }
   insertProducto(NegId:number,cod_prod:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){

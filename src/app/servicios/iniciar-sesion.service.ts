@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 
 export interface RespuestaLogin {
   token: string;
-  idNeg: Number;
+  id_neg: Number;
   idUsu: Number;
 }
 

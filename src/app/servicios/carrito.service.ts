@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class CarritoService {
   private carrito: any[] = [];
-  idNeg:Number= 0;
+  id_neg:Number= 0;
   constructor(private http: HttpClient) { }
   obtenerCarrito(): any[] {
     return this.carrito;
@@ -27,9 +27,9 @@ export class CarritoService {
   vaciarCarrito(): void {
     this.carrito = [];
   }
-  guardarCarrito(IdNeg:number,idUser:number){
+  guardarCarrito(id_neg:number,idUser:number){
     const body = {
-      idNeg:IdNeg,
+      id_neg:id_neg,
       idUser:Number(localStorage.getItem('idCli')),
       productos:this.carrito,
       total:this.calcularTotal()

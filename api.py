@@ -96,10 +96,10 @@ def login():
     user_id = user['_id']
     token = generate_token(user_id)
     if user['tipo'] == 0:
-      return jsonify({'token': token, 'idUsu': user['_id'], 'idNeg': -1})
+      return jsonify({'token': token, 'idUsu': user['_id'], 'id_neg': -1})
     else:
       neg = negocios.find_one({'idAdmin': user['_id']})
-      return jsonify({'token': token, 'idNeg': neg['_id']})
+      return jsonify({'token': token, 'id_neg': neg['_id']})
 
   return jsonify({'error': 'Credenciales incorrectas'}), 401
 
@@ -163,7 +163,7 @@ def get_producto(id, cod_prod):
 def insert_pedido():
   data=request.get_json()
   pedidos.insert_one(
-    {"_id": obtener_maximo_id('pedidos'), "estadoPed": "pendiente", "montoTotal": data["total"], "negocioId": data["idNeg"],"UserId": data["idUser"],
+    {"_id": obtener_maximo_id('pedidos'), "estadoPed": "pendiente", "montoTotal": data["total"], "negocioId": data["id_neg"],"UserId": data["idUser"],
      "productos": data["productos"]})
   return jsonify({"mensaje": "Pedido Insertado Exitosamente"})
 
@@ -201,10 +201,10 @@ def actualizar_estado_pedido():
 
 
 
-@app.route('/producto/<int:cod_prod>/<int:idNeg>', methods= ['DELETE'])
-def delete_product(idNeg,cod_prod):
-  print("api recibe:", cod_prod, idNeg)
-  negocios.update_one({"_id": idNeg}, {"$pull": {"Productos": {"cod_prod": cod_prod}}})
+@app.route('/producto/<int:cod_prod>/<int:id_neg>', methods= ['DELETE'])
+def delete_product(id_neg,cod_prod):
+  print("api recibe:", cod_prod, id_neg)
+  negocios.update_one({"_id": id_neg}, {"$pull": {"Productos": {"cod_prod": cod_prod}}})
   return jsonify({"mensaje": "Producto eliminado exitosamente"})
 
 
