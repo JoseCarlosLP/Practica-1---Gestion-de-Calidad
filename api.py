@@ -57,7 +57,7 @@ def registrar():
 
 
 @app.route('/registrarN', methods=['POST'])
-def registrarNegocio():
+def registrar_negocio():
   data = request.get_json()
   existing_neg = negocios.find_one({'Nombre': data['Nombre']})
   if existing_neg:
