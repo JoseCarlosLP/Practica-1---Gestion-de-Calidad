@@ -18,6 +18,7 @@ pedidos = bd.pedidos  # Select the collection name
 usuarios = bd.usuarios  # Select the collection name
 
 TOKEN_TYPE = 'Bearer '
+MENSAJE_ACTUALIZADO = "Actualizado Exitosamente"
 
 def obtener_maximo_id(coleccion):
   resultado = bd[coleccion].aggregate([
@@ -220,7 +221,7 @@ def update_product(neg_id):
     'Productos.$.Imagen': data['Imagen'],
   }
   negocios.update_one({"_id":neg_id,"Productos.cod_prod":data["cod_prod"]}, {"$set":producto},upsert=True)
-  return jsonify({"mensaje": "Actualizado Exitosamente"})
+  return jsonify({"mensaje": MENSAJE_ACTUALIZADO})
 
 
 @app.route('/insertarProducto/<int:neg_id>', methods= ['POST'])
@@ -241,7 +242,7 @@ def insert_product(neg_id):
     }
   }
   negocios.update_one({"_id":neg_id},{"$push":producto})
-  return jsonify({"mensaje": "Actualizado Exitosamente"})
+  return jsonify({"mensaje": MENSAJE_ACTUALIZADO})
 
 @app.route('/Usuario/<int:id_user>', methods=['GET'])
 def get_usuario(id_user):
@@ -256,7 +257,7 @@ def update_usuario(id_user):
     data=request.get_json()
     hashed_password = data['password'].encode('utf-8')
     usuarios.update_one({"_id": id_user}, {"$set":{"username":data['username'],"email":data['email'],"password":hashed_password}})
-    return jsonify({"mensaje": "Actualizado Exitosamente"})
+    return jsonify({"mensaje": MENSAJE_ACTUALIZADO})
 
 if __name__ == '__main__':
   app.run(debug=True, port=8000)
