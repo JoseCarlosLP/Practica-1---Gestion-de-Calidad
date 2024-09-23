@@ -7,8 +7,8 @@
             <div class="Detalles">
                 <form id="productoForm">
                     <div>
-                        <label for="codProd">Codigo Producto: </label>
-                        <input type="number" name="codProd" id="codProd" value="{{producto.codProd}}" required #codProd/>
+                        <label for="cod_prod">Codigo Producto: </label>
+                        <input type="number" name="cod_prod" id="cod_prod" value="{{producto.cod_prod}}" required #cod_prod/>
                     </div>    
                     <div>
                         <label for="Nombre">Nombre: </label>
@@ -31,7 +31,7 @@
                         <label for="Imagen">URL Imagen: </label>
                         <input id="Imagen" name="Imagen" type="text" value="{{producto.Imagen}}" #Imagen/>
                     </div>
-                    <button type="submit" (click)="save(codProd.value,Nombre.value, Descripcion.value, Categoria.value, Precio.value, Imagen.value)">Guardar</button>
+                    <button type="submit" (click)="save(cod_prod.value,Nombre.value, Descripcion.value, Categoria.value, Precio.value, Imagen.value)">Guardar</button>
                 </form>
                 
             </div>

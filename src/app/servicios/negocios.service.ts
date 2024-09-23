@@ -21,13 +21,13 @@ export class NegociosService{
     });
     return this.http.get(url,{headers: headers})
   }
-  obtenerProducto(idNeg:number,codProd:Number){
-    const url=`${"http://127.0.0.1:8000/dnegocio"}/${idNeg}${"/producto"}/${codProd}`;
+  obtenerProducto(idNeg:number,cod_prod:Number){
+    const url=`${"http://127.0.0.1:8000/dnegocio"}/${idNeg}${"/producto"}/${cod_prod}`;
     return this.http.get(url)
   }
-  insertProducto(NegId:number,codProd:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
+  insertProducto(NegId:number,cod_prod:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
     const body = {
-      codProd:codProd,
+      cod_prod:cod_prod,
       Nombre:nombre,
       Descripcion:descripcion,
       Categoria:categoria,
@@ -36,9 +36,9 @@ export class NegociosService{
     }
     return this.http.post("http://127.0.0.1:8000/insertarProducto/"+NegId,body)
   }
-  updateProducto(NegId:number,codProd:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
+  updateProducto(NegId:number,cod_prod:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
     const body = {
-      codProd:codProd,
+      cod_prod:cod_prod,
       Nombre:nombre,
       Descripcion:descripcion,
       Categoria:categoria,
@@ -47,8 +47,8 @@ export class NegociosService{
     }
     return this.http.post("http://127.0.0.1:8000/actualizar/"+NegId,body)
   }
-  eliminarProducto(codProd:number,id:Number){
-    return this.http.delete("http://127.0.0.1:8000/producto/"+codProd+"/"+id);
+  eliminarProducto(cod_prod:number,id:Number){
+    return this.http.delete("http://127.0.0.1:8000/producto/"+cod_prod+"/"+id);
   }
 
   obtenerPedidosCliente(idCliente: Number) {

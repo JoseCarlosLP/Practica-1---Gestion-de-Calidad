@@ -12,13 +12,13 @@ export class CarritoService {
     return this.carrito;
   }
 
-  agregarAlCarrito(codProd: string, nombre:string,cantidad: number, precio: number): void {
-    const productoEnCarrito = this.carrito.find(item => item.codProd === codProd);
+  agregarAlCarrito(cod_prod: string, nombre:string,cantidad: number, precio: number): void {
+    const productoEnCarrito = this.carrito.find(item => item.cod_prod === cod_prod);
 
     if (productoEnCarrito) {
       productoEnCarrito.cantidad += cantidad;
     } else {
-      this.carrito.push({ codProd, nombre,cantidad, precio });
+      this.carrito.push({ cod_prod, nombre,cantidad, precio });
     }
   }
   calcularTotal(): number {

@@ -21,9 +21,9 @@ export class CrearProductoComponent {
   goBack(): void {
     this.location.back();
   }
-  save(codProd:string,nombre:string,descripcion:string, categoria:string,precio:string,imagen:string):void{
+  save(cod_prod:string,nombre:string,descripcion:string, categoria:string,precio:string,imagen:string):void{
     console.log("Tenemos: ",nombre)
-    this.negocioService.insertProducto(this.idNeg,Number(codProd),nombre,descripcion,categoria,Number(precio),imagen).subscribe(
+    this.negocioService.insertProducto(this.idNeg,Number(cod_prod),nombre,descripcion,categoria,Number(precio),imagen).subscribe(
       (response) =>{
         this.goBack()
       },

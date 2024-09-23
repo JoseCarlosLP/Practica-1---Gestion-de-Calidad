@@ -152,9 +152,9 @@ def get_productos(id):
   return jsonify(negocios.find_one({"_id": id})['Productos'])
 
 
-@app.route('/dnegocio/<int:id>/producto/<int:codProd>', methods=['GET'])
-def get_producto(id, codProd):
-  producto = negocios.find_one({"_id": id, "Productos.codProd": codProd}, {"_id": 0, "Productos.$": 1})
+@app.route('/dnegocio/<int:id>/producto/<int:cod_prod>', methods=['GET'])
+def get_producto(id, cod_prod):
+  producto = negocios.find_one({"_id": id, "Productos.cod_prod": cod_prod}, {"_id": 0, "Productos.$": 1})
   if producto and 'Productos' in producto:
     return jsonify(producto['Productos'][0])
 
@@ -201,10 +201,10 @@ def actualizar_estado_pedido():
 
 
 
-@app.route('/producto/<int:codProd>/<int:idNeg>', methods= ['DELETE'])
-def delete_product(idNeg,codProd):
-  print("api recibe:", codProd, idNeg)
-  negocios.update_one({"_id": idNeg}, {"$pull": {"Productos": {"codProd": codProd}}})
+@app.route('/producto/<int:cod_prod>/<int:idNeg>', methods= ['DELETE'])
+def delete_product(idNeg,cod_prod):
+  print("api recibe:", cod_prod, idNeg)
+  negocios.update_one({"_id": idNeg}, {"$pull": {"Productos": {"cod_prod": cod_prod}}})
   return jsonify({"mensaje": "Producto eliminado exitosamente"})
 
 
@@ -212,27 +212,27 @@ def delete_product(idNeg,codProd):
 def update_product(NegId):
   data = request.get_json()
   producto = {
-    "Productos.$.codProd": data['codProd'],
+    "Productos.$.cod_prod": data['cod_prod'],
     'Productos.$.Nombre': data['Nombre'],
     'Productos.$.Descripcion': data['Descripcion'],
     'Productos.$.Categoria': data['Categoria'],
     'Productos.$.Precio': data['Precio'],
     'Productos.$.Imagen': data['Imagen'],
   }
-  negocios.update_one({"_id":NegId,"Productos.codProd":data["codProd"]}, {"$set":producto},upsert=True)
+  negocios.update_one({"_id":NegId,"Productos.cod_prod":data["cod_prod"]}, {"$set":producto},upsert=True)
   return jsonify({"mensaje": "Actualizado Exitosamente"})
 
 
 @app.route('/insertarProducto/<int:NegId>', methods= ['POST'])
 def insert_product(NegId):
   data = request.get_json()
-  existing_product = negocios.find_one({'_id':NegId,'Productos.codProd':data['codProd']})
+  existing_product = negocios.find_one({'_id':NegId,'Productos.cod_prod':data['cod_prod']})
   if existing_product:
     return jsonify({'error': 'El producto ya existe'}), 400
 
   producto = {
     "Productos":{
-      "codProd": data['codProd'],
+      "cod_prod": data['cod_prod'],
       'Nombre': data['Nombre'],
       'Descripcion': data['Descripcion'],
       'Categoria': data['Categoria'],

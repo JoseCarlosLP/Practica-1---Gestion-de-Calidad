@@ -32,9 +32,9 @@ export class DNegocioComponent {
         }
       })
   }
-  eliminar(codProd:number){
-    console.log("Entra a funcion Eliminar: ",typeof(codProd));
-    this.negocioService.eliminarProducto(codProd,this.negocio._id).subscribe(
+  eliminar(cod_prod:number){
+    console.log("Entra a funcion Eliminar: ",typeof(cod_prod));
+    this.negocioService.eliminarProducto(cod_prod,this.negocio._id).subscribe(
       (response) =>{
         alert("Producto Eliminado Exitosamente");
         this.ngOnInit();
