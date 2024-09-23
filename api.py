@@ -208,8 +208,8 @@ def delete_product(id_neg,cod_prod):
   return jsonify({"mensaje": "Producto eliminado exitosamente"})
 
 
-@app.route('/actualizar/<int:NegId>', methods= ['POST'])
-def update_product(NegId):
+@app.route('/actualizar/<int:neg_id>', methods= ['POST'])
+def update_product(neg_id):
   data = request.get_json()
   producto = {
     "Productos.$.cod_prod": data['cod_prod'],
@@ -219,14 +219,14 @@ def update_product(NegId):
     'Productos.$.Precio': data['Precio'],
     'Productos.$.Imagen': data['Imagen'],
   }
-  negocios.update_one({"_id":NegId,"Productos.cod_prod":data["cod_prod"]}, {"$set":producto},upsert=True)
+  negocios.update_one({"_id":neg_id,"Productos.cod_prod":data["cod_prod"]}, {"$set":producto},upsert=True)
   return jsonify({"mensaje": "Actualizado Exitosamente"})
 
 
-@app.route('/insertarProducto/<int:NegId>', methods= ['POST'])
-def insert_product(NegId):
+@app.route('/insertarProducto/<int:neg_id>', methods= ['POST'])
+def insert_product(neg_id):
   data = request.get_json()
-  existing_product = negocios.find_one({'_id':NegId,'Productos.cod_prod':data['cod_prod']})
+  existing_product = negocios.find_one({'_id':neg_id,'Productos.cod_prod':data['cod_prod']})
   if existing_product:
     return jsonify({'error': 'El producto ya existe'}), 400
 
@@ -240,7 +240,7 @@ def insert_product(NegId):
       'Imagen': data['Imagen'],
     }
   }
-  negocios.update_one({"_id":NegId},{"$push":producto})
+  negocios.update_one({"_id":neg_id},{"$push":producto})
   return jsonify({"mensaje": "Actualizado Exitosamente"})
 
 @app.route('/Usuario/<int:idUser>', methods=['GET'])

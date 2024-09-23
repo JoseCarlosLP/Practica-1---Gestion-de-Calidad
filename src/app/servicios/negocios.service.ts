@@ -25,7 +25,7 @@ export class NegociosService{
     const url=`${"http://127.0.0.1:8000/dnegocio"}/${id_neg}${"/producto"}/${cod_prod}`;
     return this.http.get(url)
   }
-  insertProducto(NegId:number,cod_prod:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
+  insertProducto(neg_id:number,cod_prod:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
     const body = {
       cod_prod:cod_prod,
       Nombre:nombre,
@@ -34,9 +34,9 @@ export class NegociosService{
       Precio:precio,
       Imagen:imagen
     }
-    return this.http.post("http://127.0.0.1:8000/insertarProducto/"+NegId,body)
+    return this.http.post("http://127.0.0.1:8000/insertarProducto/"+neg_id,body)
   }
-  updateProducto(NegId:number,cod_prod:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
+  updateProducto(neg_id:number,cod_prod:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
     const body = {
       cod_prod:cod_prod,
       Nombre:nombre,
@@ -45,7 +45,7 @@ export class NegociosService{
       Precio:precio,
       Imagen:imagen
     }
-    return this.http.post("http://127.0.0.1:8000/actualizar/"+NegId,body)
+    return this.http.post("http://127.0.0.1:8000/actualizar/"+neg_id,body)
   }
   eliminarProducto(cod_prod:number,id:Number){
     return this.http.delete("http://127.0.0.1:8000/producto/"+cod_prod+"/"+id);
