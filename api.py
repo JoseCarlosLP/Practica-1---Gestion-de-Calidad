@@ -163,7 +163,7 @@ def get_producto(id, cod_prod):
 def insert_pedido():
   data=request.get_json()
   pedidos.insert_one(
-    {"_id": obtener_maximo_id('pedidos'), "estadoPed": "pendiente", "montoTotal": data["total"], "negocioId": data["id_neg"],"UserId": data["idUser"],
+    {"_id": obtener_maximo_id('pedidos'), "estadoPed": "pendiente", "montoTotal": data["total"], "negocioId": data["id_neg"],"UserId": data["id_user"],
      "productos": data["productos"]})
   return jsonify({"mensaje": "Pedido Insertado Exitosamente"})
 
@@ -243,19 +243,19 @@ def insert_product(neg_id):
   negocios.update_one({"_id":neg_id},{"$push":producto})
   return jsonify({"mensaje": "Actualizado Exitosamente"})
 
-@app.route('/Usuario/<int:idUser>', methods=['GET'])
-def get_usuario(idUser):
-    print(f"Solicitud para /Usuario/{idUser}")
-    usuario = usuarios.find_one({"_id": idUser})
+@app.route('/Usuario/<int:id_user>', methods=['GET'])
+def get_usuario(id_user):
+    print(f"Solicitud para /Usuario/{id_user}")
+    usuario = usuarios.find_one({"_id": id_user})
     usuario['password']=usuario['password'].decode('utf-8')
     print(f"Usuario encontrado: {usuario}")
     return usuario
-@app.route('/ActualizarUsuario/<int:idUser>', methods=['POST'])
-def update_usuario(idUser):
-    print(f"Solicitud para /ActualizarUsuario/{idUser}")
+@app.route('/ActualizarUsuario/<int:id_user>', methods=['POST'])
+def update_usuario(id_user):
+    print(f"Solicitud para /ActualizarUsuario/{id_user}")
     data=request.get_json()
     hashed_password = data['password'].encode('utf-8')
-    usuarios.update_one({"_id": idUser}, {"$set":{"username":data['username'],"email":data['email'],"password":hashed_password}})
+    usuarios.update_one({"_id": id_user}, {"$set":{"username":data['username'],"email":data['email'],"password":hashed_password}})
     return jsonify({"mensaje": "Actualizado Exitosamente"})
 
 if __name__ == '__main__':

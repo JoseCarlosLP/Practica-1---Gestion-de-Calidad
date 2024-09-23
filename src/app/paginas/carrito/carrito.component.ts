@@ -43,8 +43,8 @@ export class CarritoComponent implements OnInit {
     this.ngOnInit()
   }
   confirmarCarrito():void{
-    const idUser=1;
-    this.carritoService.guardarCarrito(this.id_neg,idUser).subscribe(
+    const id_user=1;
+    this.carritoService.guardarCarrito(this.id_neg,id_user).subscribe(
       (response) =>{
         alert("Pedido Realizado Exitosamente");
         this.goBack()

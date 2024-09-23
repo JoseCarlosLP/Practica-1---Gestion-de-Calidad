@@ -27,10 +27,10 @@ export class CarritoService {
   vaciarCarrito(): void {
     this.carrito = [];
   }
-  guardarCarrito(id_neg:number,idUser:number){
+  guardarCarrito(id_neg:number,id_user:number){
     const body = {
       id_neg:id_neg,
-      idUser:Number(localStorage.getItem('idCli')),
+      id_user:Number(localStorage.getItem('idCli')),
       productos:this.carrito,
       total:this.calcularTotal()
     }
