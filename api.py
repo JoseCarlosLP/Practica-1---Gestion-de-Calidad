@@ -19,6 +19,8 @@ usuarios = bd.usuarios  # Select the collection name
 
 TOKEN_TYPE = 'Bearer '
 TOKEN_EXPIRADO = "Token expirado"
+TOKEN_INVALIDO = "Token inválido"
+
 
 def obtener_maximo_id(coleccion):
   resultado = bd[coleccion].aggregate([
@@ -118,7 +120,7 @@ def get_negocios():
     return jsonify({'error': TOKEN_EXPIRADO}), 401
   except jwt.InvalidTokenError:
     print(jwt.InvalidTokenError)
-    return jsonify({'error': 'Token inválido'}), 401
+    return jsonify({'error': TOKEN_INVALIDO}), 401
 
   return list(negocios.find())
 
@@ -134,7 +136,7 @@ def get_negocio(id):
   except jwt.ExpiredSignatureError:
     return jsonify({'error': TOKEN_EXPIRADO}), 401
   except jwt.InvalidTokenError:
-    return jsonify({'error': 'Token inválido'}), 401
+    return jsonify({'error': TOKEN_INVALIDO}), 401
 
   return negocios.find_one({"_id": id})
 
@@ -148,7 +150,7 @@ def get_productos(id):
   except jwt.ExpiredSignatureError:
     return jsonify({'error': TOKEN_EXPIRADO}), 401
   except jwt.InvalidTokenError:
-    return jsonify({'error': 'Token inválido'}), 401
+    return jsonify({'error': TOKEN_INVALIDO}), 401
 
   return jsonify(negocios.find_one({"_id": id})['Productos'])
 
@@ -177,7 +179,7 @@ def get_pedidos_cliente(idCliente):
   except jwt.ExpiredSignatureError:
     return jsonify({'error': TOKEN_EXPIRADO}), 401
   except jwt.InvalidTokenError:
-    return jsonify({'error': 'Token inválido'}), 401
+    return jsonify({'error': TOKEN_INVALIDO}), 401
 
   return jsonify(list(pedidos.find({"UserId": idCliente})))
 
@@ -190,7 +192,7 @@ def get_pedidos_negocio(idNegocio):
   except jwt.ExpiredSignatureError:
     return jsonify({'error': TOKEN_EXPIRADO}), 401
   except jwt.InvalidTokenError:
-    return jsonify({'error': 'Token inválido'}), 401
+    return jsonify({'error': TOKEN_INVALIDO}), 401
 
   return jsonify(list(pedidos.find({"negocioId": idNegocio})))
 
