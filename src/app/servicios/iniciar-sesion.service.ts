@@ -4,8 +4,8 @@ import {Router} from "@angular/router";
 
 export interface RespuestaLogin {
   token: string;
-  id_neg: Number;
-  idUsu: Number;
+  id_neg: number;
+  idUsu: number;
 }
 
 @Injectable({
