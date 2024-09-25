@@ -38,7 +38,7 @@ export class IniciarSesionService {
     return this.http.post<RespuestaLogin>("http://127.0.0.1:8000/login",body)
   }
 
-  registrar(username:string,password:String,email:String){
+  registrar(username:string,password:string,email:String){
     const body = {
       username:username,
       password:password,
