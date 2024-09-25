@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class CarritoService {
   private carrito: any[] = [];
-  id_neg:Number= 0;
+  id_neg:number= 0;
   constructor(private http: HttpClient) { }
   obtenerCarrito(): any[] {
     return this.carrito;
