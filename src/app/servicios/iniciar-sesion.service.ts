@@ -30,7 +30,7 @@ export class IniciarSesionService {
     localStorage.removeItem(this.tokenKey);
   }
 
-  iniciarSesion(userOrAdminName:string,password:String){
+  iniciarSesion(userOrAdminName:string,password:string){
     const body = {
       userOrAdminName:userOrAdminName,
       password:password
