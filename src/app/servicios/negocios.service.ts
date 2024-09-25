@@ -47,7 +47,7 @@ export class NegociosService{
     }
     return this.http.post("http://127.0.0.1:8000/actualizar/"+NegId,body)
   }
-  eliminarProducto(codProd:number,id:Number){
+  eliminarProducto(codProd:number,id:number){
     return this.http.delete("http://127.0.0.1:8000/producto/"+codProd+"/"+id);
   }
 
