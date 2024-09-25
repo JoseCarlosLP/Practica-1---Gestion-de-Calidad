@@ -47,7 +47,7 @@ export class IniciarSesionService {
     return this.http.post("http://127.0.0.1:8000/registrar",body)
   }
 
-  registrarNegocio(nombre:string, adminstrador:string,password:String,email:String,categoria:String){
+  registrarNegocio(nombre:string, adminstrador:string,password:string,email:String,categoria:String){
     const body = {
       Nombre:nombre,
       AdminName:adminstrador,
