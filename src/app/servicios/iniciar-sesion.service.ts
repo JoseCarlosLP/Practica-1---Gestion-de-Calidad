@@ -62,7 +62,7 @@ export class IniciarSesionService {
     console.log("id en servicio",id)
     return this.http.get("http://127.0.0.1:8000/Usuario/"+id)
   }
-  actualizarCliente(Username:string,Email:string,Password:String){
+  actualizarCliente(Username:string,Email:string,Password:string){
     const id=Number(localStorage.getItem('idCli'))
     const body = {
       username:Username,
