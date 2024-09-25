@@ -14,9 +14,9 @@ export class CrearProductoComponent {
     private route:ActivatedRoute,
     private location: Location
   ){}
-  ngOnInit(){
-    const id_neg = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.id_neg=id_neg;
+  ngOnInit() {
+    const id_neg = parseInt(this.route.snapshot.paramMap.get('id') ?? '0', 10);
+    this.id_neg = id_neg;
   }
   goBack(): void {
     this.location.back();
