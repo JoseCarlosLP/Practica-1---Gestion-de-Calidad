@@ -58,7 +58,7 @@ export class NegociosService{
     return this.http.get("http://127.0.0.1:8000/pedidosCliente/" + idCliente,{ headers: headers })
   }
 
-  obtenerPedidosNegocio(idNegocio: Number) {
+  obtenerPedidosNegocio(idNegocio: number) {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem("authToken")}`
     });
