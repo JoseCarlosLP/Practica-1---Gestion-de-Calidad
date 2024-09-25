@@ -18,6 +18,7 @@ pedidos = bd.pedidos  # Select the collection name
 usuarios = bd.usuarios  # Select the collection name
 
 TOKEN_TYPE = 'Bearer '
+TOKEN_EXPIRADO = "Token expirado"
 
 def obtener_maximo_id(coleccion):
   resultado = bd[coleccion].aggregate([
@@ -114,7 +115,7 @@ def get_negocios():
   try:
     jwt.decode(token, app.config['APP_CONFIG'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
-    return jsonify({'error': 'Token expirado'}), 401
+    return jsonify({'error': TOKEN_EXPIRADO}), 401
   except jwt.InvalidTokenError:
     print(jwt.InvalidTokenError)
     return jsonify({'error': 'Token inválido'}), 401
@@ -131,7 +132,7 @@ def get_negocio(id):
   try:
     jwt.decode(token, app.config['APP_CONFIG'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
-    return jsonify({'error': 'Token expirado'}), 401
+    return jsonify({'error': TOKEN_EXPIRADO}), 401
   except jwt.InvalidTokenError:
     return jsonify({'error': 'Token inválido'}), 401
 
@@ -145,7 +146,7 @@ def get_productos(id):
   try:
     jwt.decode(token, app.config['APP_CONFIG'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
-    return jsonify({'error': 'Token expirado'}), 401
+    return jsonify({'error': TOKEN_EXPIRADO}), 401
   except jwt.InvalidTokenError:
     return jsonify({'error': 'Token inválido'}), 401
 
@@ -174,7 +175,7 @@ def get_pedidos_cliente(idCliente):
   try:
     jwt.decode(token, app.config['APP_CONFIG'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
-    return jsonify({'error': 'Token expirado'}), 401
+    return jsonify({'error': TOKEN_EXPIRADO}), 401
   except jwt.InvalidTokenError:
     return jsonify({'error': 'Token inválido'}), 401
 
@@ -187,7 +188,7 @@ def get_pedidos_negocio(idNegocio):
   try:
     jwt.decode(token, app.config['APP_CONFIG'], algorithms=['HS256'])
   except jwt.ExpiredSignatureError:
-    return jsonify({'error': 'Token expirado'}), 401
+    return jsonify({'error': TOKEN_EXPIRADO}), 401
   except jwt.InvalidTokenError:
     return jsonify({'error': 'Token inválido'}), 401
 
