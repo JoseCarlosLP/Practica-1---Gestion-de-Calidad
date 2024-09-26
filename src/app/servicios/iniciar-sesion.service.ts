@@ -30,7 +30,7 @@ export class IniciarSesionService {
     localStorage.removeItem(this.tokenKey);
   }
 
-  iniciarSesion(userOrAdminName:String,password:String){
+  iniciarSesion(userOrAdminName:string,password:string){
     const body = {
       userOrAdminName:userOrAdminName,
       password:password
@@ -38,7 +38,7 @@ export class IniciarSesionService {
     return this.http.post<RespuestaLogin>("http://127.0.0.1:8000/login",body)
   }
 
-  registrar(username:String,password:String,email:String){
+  registrar(username:string,password:string,email:string){
     const body = {
       username:username,
       password:password,
@@ -47,7 +47,7 @@ export class IniciarSesionService {
     return this.http.post("http://127.0.0.1:8000/registrar",body)
   }
 
-  registrarNegocio(nombre:String, adminstrador:String,password:String,email:String,categoria:String){
+  registrarNegocio(nombre:string, adminstrador:string,password:string,email:string,categoria:string){
     const body = {
       Nombre:nombre,
       AdminName:adminstrador,
@@ -62,7 +62,7 @@ export class IniciarSesionService {
     console.log("id en servicio",id)
     return this.http.get("http://127.0.0.1:8000/Usuario/"+id)
   }
-  actualizarCliente(Username:String,Email:String,Password:String){
+  actualizarCliente(Username:string,Email:string,Password:string){
     const id=Number(localStorage.getItem('idCli'))
     const body = {
       username:Username,

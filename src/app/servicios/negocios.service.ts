@@ -14,14 +14,14 @@ export class NegociosService{
     });
     return this.http.get("http://127.0.0.1:8000/negocios",{ headers: headers })
   }
-  obtenerNegocio(id:Number){
+  obtenerNegocio(id:number){
     const url=`${"http://127.0.0.1:8000/negocios"}/${id}`;
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem("authToken")}`
     });
     return this.http.get(url,{headers: headers})
   }
-  obtenerProducto(idNeg:number,codProd:Number){
+  obtenerProducto(idNeg:number,codProd:number){
     const url=`${"http://127.0.0.1:8000/dnegocio"}/${idNeg}${"/producto"}/${codProd}`;
     return this.http.get(url)
   }
@@ -47,25 +47,25 @@ export class NegociosService{
     }
     return this.http.post("http://127.0.0.1:8000/actualizar/"+NegId,body)
   }
-  eliminarProducto(codProd:number,id:Number){
+  eliminarProducto(codProd:number,id:number){
     return this.http.delete("http://127.0.0.1:8000/producto/"+codProd+"/"+id);
   }
 
-  obtenerPedidosCliente(idCliente: Number) {
+  obtenerPedidosCliente(idCliente: number) {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem("authToken")}`
     });
     return this.http.get("http://127.0.0.1:8000/pedidosCliente/" + idCliente,{ headers: headers })
   }
 
-  obtenerPedidosNegocio(idNegocio: Number) {
+  obtenerPedidosNegocio(idNegocio: number) {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem("authToken")}`
     });
     return this.http.get("http://127.0.0.1:8000/pedidosNegocio/" + idNegocio,{ headers: headers })
   }
 
-  actualizarPedido(idPedido: Number)
+  actualizarPedido(idPedido: number)
   {
     const body = {
       idPedido:idPedido
