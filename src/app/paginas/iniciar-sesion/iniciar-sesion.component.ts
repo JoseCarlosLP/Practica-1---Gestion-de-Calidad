@@ -51,15 +51,17 @@ export class IniciarSesionComponent implements OnInit{
 
   registrar(username:string,password:string,email:string){
     if (username!="" && password != "" && email != "") {
-      this.iniciarSesionService.registrar(username, password, email).subscribe(
-        (response) => {
-          alert("Registrado existosamente, ahora inicie sesion");
+      this.iniciarSesionService.registrar(username, password, email) .pipe(
+        tap(() => {
+          alert("Registrado exitosamente, ahora inicie sesión");
           window.location.reload();
-        },
-        (error) => {
+        }),
+        catchError((error) => {
           alert("Error al registrar");
-        }
+          return of(null);
+        })
       )
+      .subscribe();
     } else alert ("Complete todos los campos");
   }
 
