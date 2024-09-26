@@ -2,6 +2,8 @@ import { Component, OnInit  } from '@angular/core';
 import { CarritoService } from 'src/app/servicios/carrito.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-carrito',
@@ -44,15 +46,16 @@ export class CarritoComponent implements OnInit {
   }
   confirmarCarrito():void{
     const id_user=1;
-    this.carritoService.guardarCarrito(this.id_neg,id_user).subscribe(
-      (response) =>{
-        alert("Pedido Realizado Exitosamente");
-        this.goBack()
-      },
-      (error) => {
+    this.carritoService.guardarCarrito(this.id_neg,id_user).pipe(
+      tap((response) => {
+        this.goBack();
+      }),
+      catchError((error) => {
         alert("Error al Actualizar Producto");
-      }
+        return of(null);
+      })
     )
+    .subscribe();
     this.carritoService.vaciarCarrito();
   }
 }
