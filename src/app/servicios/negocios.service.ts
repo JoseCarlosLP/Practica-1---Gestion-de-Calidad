@@ -21,48 +21,48 @@ export class NegociosService{
     });
     return this.http.get(url,{headers: headers})
   }
-  obtenerProducto(idNeg:number,codProd:number){
-    const url=`${"http://127.0.0.1:8000/dnegocio"}/${idNeg}${"/producto"}/${codProd}`;
+  obtenerProducto(id_neg:number,cod_prod:number){
+    const url=`${"http://127.0.0.1:8000/dnegocio"}/${id_neg}${"/producto"}/${cod_prod}`;
     return this.http.get(url)
   }
-  insertProducto(NegId:number,codProd:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
+  insertProducto(neg_id:number,cod_prod:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
     const body = {
-      codProd:codProd,
+      cod_prod:cod_prod,
       Nombre:nombre,
       Descripcion:descripcion,
       Categoria:categoria,
       Precio:precio,
       Imagen:imagen
     }
-    return this.http.post("http://127.0.0.1:8000/insertarProducto/"+NegId,body)
+    return this.http.post("http://127.0.0.1:8000/insertarProducto/"+neg_id,body)
   }
-  updateProducto(NegId:number,codProd:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
+  updateProducto(neg_id:number,cod_prod:number,nombre: string, descripcion:string,categoria:string, precio: number,imagen:string){
     const body = {
-      codProd:codProd,
+      cod_prod:cod_prod,
       Nombre:nombre,
       Descripcion:descripcion,
       Categoria:categoria,
       Precio:precio,
       Imagen:imagen
     }
-    return this.http.post("http://127.0.0.1:8000/actualizar/"+NegId,body)
+    return this.http.post("http://127.0.0.1:8000/actualizar/"+neg_id,body)
   }
-  eliminarProducto(codProd:number,id:number){
-    return this.http.delete("http://127.0.0.1:8000/producto/"+codProd+"/"+id);
+  eliminarProducto(cod_prod:number,id:number){
+    return this.http.delete("http://127.0.0.1:8000/producto/"+cod_prod+"/"+id);
   }
 
-  obtenerPedidosCliente(idCliente: number) {
+  obtenerPedidosCliente(id_cliente: number) {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem("authToken")}`
     });
-    return this.http.get("http://127.0.0.1:8000/pedidosCliente/" + idCliente,{ headers: headers })
+    return this.http.get("http://127.0.0.1:8000/pedidosCliente/" + id_cliente,{ headers: headers })
   }
 
-  obtenerPedidosNegocio(idNegocio: number) {
+  obtenerPedidosNegocio(id_negocio: number) {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem("authToken")}`
     });
-    return this.http.get("http://127.0.0.1:8000/pedidosNegocio/" + idNegocio,{ headers: headers })
+    return this.http.get("http://127.0.0.1:8000/pedidosNegocio/" + id_negocio,{ headers: headers })
   }
 
   actualizarPedido(idPedido: number)

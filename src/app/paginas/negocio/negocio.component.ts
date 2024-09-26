@@ -36,10 +36,10 @@ export class NegocioComponent {
 
   comprarProducto(producto:any) {
     alert("producto añadido");
-    const codProd = producto.codProd;
+    const cod_prod = producto.cod_prod;
     const Nombre = producto.Nombre;
     const cantidad = 1;
     const precio = producto.Precio;
-    this.carritoService.agregarAlCarrito(codProd, Nombre, cantidad, precio);
+    this.carritoService.agregarAlCarrito(cod_prod, Nombre, cantidad, precio);
   }
 }

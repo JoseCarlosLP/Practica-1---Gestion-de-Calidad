@@ -21,6 +21,7 @@ TOKEN_TYPE = 'Bearer '
 TOKEN_EXPIRADO = "Token expirado"
 TOKEN_INVALIDO = "Token inválido"
 
+MENSAJE_ACTUALIZADO = "Actualizado Exitosamente"
 
 def obtener_maximo_id(coleccion):
   resultado = bd[coleccion].aggregate([
@@ -99,10 +100,10 @@ def login():
     user_id = user['_id']
     token = generate_token(user_id)
     if user['tipo'] == 0:
-      return jsonify({'token': token, 'idUsu': user['_id'], 'idNeg': -1})
+      return jsonify({'token': token, 'idUsu': user['_id'], 'id_neg': -1})
     else:
       neg = negocios.find_one({'idAdmin': user['_id']})
-      return jsonify({'token': token, 'idNeg': neg['_id']})
+      return jsonify({'token': token, 'id_neg': neg['_id']})
 
   return jsonify({'error': 'Credenciales incorrectas'}), 401
 
@@ -155,9 +156,9 @@ def get_productos(id):
   return jsonify(negocios.find_one({"_id": id})['Productos'])
 
 
-@app.route('/dnegocio/<int:id>/producto/<int:codProd>', methods=['GET'])
-def get_producto(id, codProd):
-  producto = negocios.find_one({"_id": id, "Productos.codProd": codProd}, {"_id": 0, "Productos.$": 1})
+@app.route('/dnegocio/<int:id>/producto/<int:cod_prod>', methods=['GET'])
+def get_producto(id, cod_prod):
+  producto = negocios.find_one({"_id": id, "Productos.cod_prod": cod_prod}, {"_id": 0, "Productos.$": 1})
   if producto and 'Productos' in producto:
     return jsonify(producto['Productos'][0])
 
@@ -166,12 +167,12 @@ def get_producto(id, codProd):
 def insert_pedido():
   data=request.get_json()
   pedidos.insert_one(
-    {"_id": obtener_maximo_id('pedidos'), "estadoPed": "pendiente", "montoTotal": data["total"], "negocioId": data["idNeg"],"UserId": data["idUser"],
+    {"_id": obtener_maximo_id('pedidos'), "estadoPed": "pendiente", "montoTotal": data["total"], "negocioId": data["id_neg"],"UserId": data["id_user"],
      "productos": data["productos"]})
   return jsonify({"mensaje": "Pedido Insertado Exitosamente"})
 
-@app.route('/pedidosCliente/<int:idCliente>', methods=['GET'])
-def get_pedidos_cliente(idCliente):
+@app.route('/pedidosCliente/<int:id_cliente>', methods=['GET'])
+def get_pedidos_cliente(id_cliente):
   data = request.headers.get('Authorization')
   token = str.replace(str(data), TOKEN_TYPE, '')
   try:
@@ -181,10 +182,10 @@ def get_pedidos_cliente(idCliente):
   except jwt.InvalidTokenError:
     return jsonify({'error': TOKEN_INVALIDO}), 401
 
-  return jsonify(list(pedidos.find({"UserId": idCliente})))
+  return jsonify(list(pedidos.find({"UserId": id_cliente})))
 
-@app.route('/pedidosNegocio/<int:idNegocio>', methods=['GET'])
-def get_pedidos_negocio(idNegocio):
+@app.route('/pedidosNegocio/<int:id_negocio>', methods=['GET'])
+def get_pedidos_negocio(id_negocio):
   data = request.headers.get('Authorization')
   token = str.replace(str(data), TOKEN_TYPE, '')
   try:
@@ -194,7 +195,7 @@ def get_pedidos_negocio(idNegocio):
   except jwt.InvalidTokenError:
     return jsonify({'error': TOKEN_INVALIDO}), 401
 
-  return jsonify(list(pedidos.find({"negocioId": idNegocio})))
+  return jsonify(list(pedidos.find({"negocioId": id_negocio})))
 
 @app.route("/pedidosNegocio",  methods=['POST'])
 def actualizar_estado_pedido():
@@ -204,38 +205,38 @@ def actualizar_estado_pedido():
 
 
 
-@app.route('/producto/<int:codProd>/<int:idNeg>', methods= ['DELETE'])
-def delete_product(idNeg,codProd):
-  print("api recibe:", codProd, idNeg)
-  negocios.update_one({"_id": idNeg}, {"$pull": {"Productos": {"codProd": codProd}}})
+@app.route('/producto/<int:cod_prod>/<int:id_neg>', methods= ['DELETE'])
+def delete_product(id_neg,cod_prod):
+  print("api recibe:", cod_prod, id_neg)
+  negocios.update_one({"_id": id_neg}, {"$pull": {"Productos": {"cod_prod": cod_prod}}})
   return jsonify({"mensaje": "Producto eliminado exitosamente"})
 
 
-@app.route('/actualizar/<int:NegId>', methods= ['POST'])
-def update_product(NegId):
+@app.route('/actualizar/<int:neg_id>', methods= ['POST'])
+def update_product(neg_id):
   data = request.get_json()
   producto = {
-    "Productos.$.codProd": data['codProd'],
+    "Productos.$.cod_prod": data['cod_prod'],
     'Productos.$.Nombre': data['Nombre'],
     'Productos.$.Descripcion': data['Descripcion'],
     'Productos.$.Categoria': data['Categoria'],
     'Productos.$.Precio': data['Precio'],
     'Productos.$.Imagen': data['Imagen'],
   }
-  negocios.update_one({"_id":NegId,"Productos.codProd":data["codProd"]}, {"$set":producto},upsert=True)
-  return jsonify({"mensaje": "Actualizado Exitosamente"})
+  negocios.update_one({"_id":neg_id,"Productos.cod_prod":data["cod_prod"]}, {"$set":producto},upsert=True)
+  return jsonify({"mensaje": MENSAJE_ACTUALIZADO})
 
 
-@app.route('/insertarProducto/<int:NegId>', methods= ['POST'])
-def insert_product(NegId):
+@app.route('/insertarProducto/<int:neg_id>', methods= ['POST'])
+def insert_product(neg_id):
   data = request.get_json()
-  existing_product = negocios.find_one({'_id':NegId,'Productos.codProd':data['codProd']})
+  existing_product = negocios.find_one({'_id':neg_id,'Productos.cod_prod':data['cod_prod']})
   if existing_product:
     return jsonify({'error': 'El producto ya existe'}), 400
 
   producto = {
     "Productos":{
-      "codProd": data['codProd'],
+      "cod_prod": data['cod_prod'],
       'Nombre': data['Nombre'],
       'Descripcion': data['Descripcion'],
       'Categoria': data['Categoria'],
@@ -243,23 +244,23 @@ def insert_product(NegId):
       'Imagen': data['Imagen'],
     }
   }
-  negocios.update_one({"_id":NegId},{"$push":producto})
-  return jsonify({"mensaje": "Actualizado Exitosamente"})
+  negocios.update_one({"_id":neg_id},{"$push":producto})
+  return jsonify({"mensaje": MENSAJE_ACTUALIZADO})
 
-@app.route('/Usuario/<int:idUser>', methods=['GET'])
-def get_usuario(idUser):
-    print(f"Solicitud para /Usuario/{idUser}")
-    usuario = usuarios.find_one({"_id": idUser})
+@app.route('/Usuario/<int:id_user>', methods=['GET'])
+def get_usuario(id_user):
+    print(f"Solicitud para /Usuario/{id_user}")
+    usuario = usuarios.find_one({"_id": id_user})
     usuario['password']=usuario['password'].decode('utf-8')
     print(f"Usuario encontrado: {usuario}")
     return usuario
-@app.route('/ActualizarUsuario/<int:idUser>', methods=['POST'])
-def update_usuario(idUser):
-    print(f"Solicitud para /ActualizarUsuario/{idUser}")
+@app.route('/ActualizarUsuario/<int:id_user>', methods=['POST'])
+def update_usuario(id_user):
+    print(f"Solicitud para /ActualizarUsuario/{id_user}")
     data=request.get_json()
     hashed_password = data['password'].encode('utf-8')
-    usuarios.update_one({"_id": idUser}, {"$set":{"username":data['username'],"email":data['email'],"password":hashed_password}})
-    return jsonify({"mensaje": "Actualizado Exitosamente"})
+    usuarios.update_one({"_id": id_user}, {"$set":{"username":data['username'],"email":data['email'],"password":hashed_password}})
+    return jsonify({"mensaje": MENSAJE_ACTUALIZADO})
 
 if __name__ == '__main__':
   app.run(debug=True, port=8000)

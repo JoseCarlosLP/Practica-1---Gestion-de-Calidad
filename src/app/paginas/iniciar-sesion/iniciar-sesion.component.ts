@@ -26,13 +26,13 @@ export class IniciarSesionComponent implements OnInit{
         (response : RespuestaLogin) =>{
           alert("Sesion iniciada existosamente");
           this.iniciarSesionService.guardarToken(response.token);
-          if(response.idNeg==-1) {
+          if(response.id_neg==-1) {
             this.router.navigate(['/inicio']);
             localStorage.setItem("idCli",String(response.idUsu));
           } else
           {
             this.router.navigate(['/dnegocio']);
-            localStorage.setItem("idNeg",String(response.idNeg));
+            localStorage.setItem("id_neg",String(response.id_neg));
           }
         },
         (error) => {
@@ -57,9 +57,9 @@ export class IniciarSesionComponent implements OnInit{
     } else alert ("Complete todos los campos");
   }
 
-  registrarNegocio(nombreNeg:string, adminstrador:string,password:string,email:string,categoria:string){
+  registrar_negocio(nombreNeg:string, adminstrador:string,password:string,email:string,categoria:string){
     if (nombreNeg!="" && adminstrador != "" && password != "" && email != "" && categoria != "") {
-      this.iniciarSesionService.registrarNegocio(nombreNeg,adminstrador,password,email,categoria).subscribe(
+      this.iniciarSesionService.registrar_negocio(nombreNeg,adminstrador,password,email,categoria).subscribe(
         (response) => {
           alert("Registrado existosamente, ahora inicie sesion");
           window.location.reload();

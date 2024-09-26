@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { NegociosService } from 'src/app/servicios/negocios.service';
@@ -8,22 +8,22 @@ import { NegociosService } from 'src/app/servicios/negocios.service';
   styleUrls: ['./crear-producto.component.css']
 })
 export class CrearProductoComponent {
-  idNeg:number=0;
+  id_neg:number=0;
   constructor(
     private negocioService: NegociosService,
     private route:ActivatedRoute,
     private location: Location
   ){}
-  ngOnInit(){
-    const idNeg = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.idNeg=idNeg;
+  ngOnInit() {
+    const id_neg = parseInt(this.route.snapshot.paramMap.get('id') ?? '0', 10);
+    this.id_neg = id_neg;
   }
   goBack(): void {
     this.location.back();
   }
-  save(codProd:string,nombre:string,descripcion:string, categoria:string,precio:string,imagen:string):void{
+  save(cod_prod:string,nombre:string,descripcion:string, categoria:string,precio:string,imagen:string):void{
     console.log("Tenemos: ",nombre)
-    this.negocioService.insertProducto(this.idNeg,Number(codProd),nombre,descripcion,categoria,Number(precio),imagen).subscribe(
+    this.negocioService.insertProducto(this.id_neg,Number(cod_prod),nombre,descripcion,categoria,Number(precio),imagen).subscribe(
       (response) =>{
         this.goBack()
       },

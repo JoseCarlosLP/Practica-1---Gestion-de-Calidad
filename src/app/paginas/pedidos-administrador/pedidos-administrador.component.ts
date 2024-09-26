@@ -11,12 +11,12 @@ import { Location } from '@angular/common';
 export class PedidosAdministradorComponent {
 
   pedidos:any={};
-  idNeg:number=0;
+  id_neg:number=0;
 
   constructor(private router:Router, private negociosService: NegociosService, private route:ActivatedRoute,private location: Location){}
   
   ngOnInit(): void {
-    this.idNeg = Number(localStorage.getItem("idNeg"));
+    this.id_neg = Number(localStorage.getItem("id_neg"));
     this.getPedidos();
   }
 
@@ -25,7 +25,7 @@ export class PedidosAdministradorComponent {
   }
 
   getPedidos(){
-    this.negociosService.obtenerPedidosNegocio(this.idNeg).subscribe(
+    this.negociosService.obtenerPedidosNegocio(this.id_neg).subscribe(
       (pedidos:Object)=>this.pedidos=pedidos)
   }
 

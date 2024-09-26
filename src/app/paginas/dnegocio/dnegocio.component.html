@@ -7,7 +7,7 @@
 <button type="button" [routerLink]="'/insertarProducto/'+negocio._id">Nuevo Producto</button>
 <div class="grid-container">
     <div *ngFor="let producto of negocio.Productos" class="producto">
-        <a [routerLink]="'/dnegocio/' + negocio._id + '/producto/' + producto.codProd">
+        <a [routerLink]="'/dnegocio/' + negocio._id + '/producto/' + producto.cod_prod">
             <div class="container">
                 <div class="informacion">
                     <div class="Nombre">{{producto.Nombre}}</div>
@@ -18,6 +18,6 @@
                 </div>
             </div>
         </a>
-        <button type="submit" (click)="eliminar(producto.codProd)">Eliminar</button>
+        <button type="submit" (click)="eliminar(producto.cod_prod)">Eliminar</button>
     </div>
 </div>

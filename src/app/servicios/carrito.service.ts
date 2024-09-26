@@ -6,19 +6,19 @@ import { Injectable } from '@angular/core';
 })
 export class CarritoService {
   private carrito: any[] = [];
-  idNeg:Number= 0;
+  id_neg:number= 0;
   constructor(private http: HttpClient) { }
   obtenerCarrito(): any[] {
     return this.carrito;
   }
 
-  agregarAlCarrito(codProd: string, nombre:string,cantidad: number, precio: number): void {
-    const productoEnCarrito = this.carrito.find(item => item.codProd === codProd);
+  agregarAlCarrito(cod_prod: string, nombre:string,cantidad: number, precio: number): void {
+    const productoEnCarrito = this.carrito.find(item => item.cod_prod === cod_prod);
 
     if (productoEnCarrito) {
       productoEnCarrito.cantidad += cantidad;
     } else {
-      this.carrito.push({ codProd, nombre,cantidad, precio });
+      this.carrito.push({ cod_prod, nombre,cantidad, precio });
     }
   }
   calcularTotal(): number {
@@ -27,10 +27,10 @@ export class CarritoService {
   vaciarCarrito(): void {
     this.carrito = [];
   }
-  guardarCarrito(IdNeg:number,idUser:number){
+  guardarCarrito(id_neg:number,id_user:number){
     const body = {
-      idNeg:IdNeg,
-      idUser:Number(localStorage.getItem('idCli')),
+      id_neg:id_neg,
+      id_user:Number(localStorage.getItem('idCli')),
       productos:this.carrito,
       total:this.calcularTotal()
     }

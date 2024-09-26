@@ -23,7 +23,7 @@ export class PerfilComponent implements OnInit{
   goBack(){
     this.location.back();
   }
-  save(username:String,email:String,password:String){
+  save(username:string,email:string,password:string){
     this.iniciarsesionService.actualizarCliente(username,email,password).subscribe(
       (response) =>{
         alert("Perfil Actualizado Exitosamente");
