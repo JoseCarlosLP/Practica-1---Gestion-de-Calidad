@@ -2,6 +2,9 @@ import { Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { NegociosService } from 'src/app/servicios/negocios.service';
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 @Component({
   selector: 'app-detalle-producto',
   templateUrl: './detalle-producto.component.html',
@@ -38,14 +41,15 @@ export class DetalleProductoComponent {
   }
   save(cod_prod:string,nombre:string,descripcion:string, categoria:string,precio:string,imagen:string):void{
     console.log("Tenemos: ",nombre)
-    this.negocioService.updateProducto(this.id_neg,Number(cod_prod),nombre,descripcion,categoria,Number(precio),imagen).subscribe(
-      (response) =>{
-        alert("Producto Actualizado Exitosamente");
-        this.ngOnInit()
-      },
-      (error) => {
+    this.negocioService.updateProducto(this.id_neg,Number(cod_prod),nombre,descripcion,categoria,Number(precio),imagen).pipe(
+      tap((response) => {
+        this.goBack();
+      }),
+      catchError((error) => {
         alert("Error al Actualizar Producto");
-      }
+        return of(null);
+      })
     )
+    .subscribe();
   }
 }
