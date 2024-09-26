@@ -67,15 +67,17 @@ export class IniciarSesionComponent implements OnInit{
 
   registrar_negocio(nombreNeg:string, adminstrador:string,password:string,email:string,categoria:string){
     if (nombreNeg!="" && adminstrador != "" && password != "" && email != "" && categoria != "") {
-      this.iniciarSesionService.registrar_negocio(nombreNeg,adminstrador,password,email,categoria).subscribe(
-        (response) => {
-          alert("Registrado existosamente, ahora inicie sesion");
+      this.iniciarSesionService.registrar_negocio(nombreNeg,adminstrador,password,email,categoria).pipe(
+        tap(() => {
+          alert("Registrado exitosamente, ahora inicie sesión");
           window.location.reload();
-        },
-        (error) => {
+        }),
+        catchError((error) => {
           alert("Error al registrar");
-        }
+          return of(null);
+        })
       )
+      .subscribe();
     } else alert ("Complete todos los campos");
   }
 
