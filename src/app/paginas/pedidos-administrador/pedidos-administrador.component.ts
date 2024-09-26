@@ -2,7 +2,8 @@ import { Component} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NegociosService } from 'src/app/servicios/negocios.service';
 import { Location } from '@angular/common';
-
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 @Component({
   selector: 'app-pedidos-administrador',
   templateUrl: './pedidos-administrador.component.html',
@@ -31,14 +32,16 @@ export class PedidosAdministradorComponent {
 
   cambiarEstado(id:number)
   {
-    this.negociosService.actualizarPedido(id).subscribe(
-      (response) =>{
+    this.negociosService.actualizarPedido(id).pipe(
+      tap((response) => {
         alert("Pedido Actualizado Exitosamente");
         this.ngOnInit();
-      },
-      (error) => {
+      }),
+      catchError((error) => {
         alert("Error al Actualizar Pedido");
-      }
-    );
+        return of(null);
+      })
+    )
+    .subscribe();
   }
 }
