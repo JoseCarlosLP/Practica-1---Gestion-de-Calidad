@@ -45,7 +45,6 @@ export class CarritoComponent implements OnInit {
     this.ngOnInit()
   }
   confirmarCarrito():void{
-    const id_user=1;
     this.carritoService.guardarCarrito(this.id_neg).pipe(
       tap(() => {
         this.goBack();
