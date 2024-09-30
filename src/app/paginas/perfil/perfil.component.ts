@@ -21,14 +21,14 @@ export class PerfilComponent implements OnInit{
   }
   get_Cliente(){
     this.iniciarsesionService.obtenerCliente().subscribe(
-        (cliente:Object)=>this.cliente=cliente)
+        (cliente:object)=>this.cliente=cliente)
   }
   goBack(){
     this.location.back();
   }
   save(username:string,email:string,password:string){
     this.iniciarsesionService.actualizarCliente(username,email,password).pipe(
-      tap((cliente: Object) => this.cliente = cliente),
+      tap((cliente: object) => this.cliente = cliente),
       catchError((error) => {
         console.error('Error al obtener cliente', error);
         return of(null);
