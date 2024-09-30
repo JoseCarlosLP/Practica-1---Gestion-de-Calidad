@@ -28,10 +28,10 @@ export class CrearProductoComponent {
     console.log("Tenemos: ",nombre)
     this.negocioService.insertProducto(this.id_neg, Number(cod_prod), nombre, descripcion, categoria, Number(precio), imagen)
       .pipe(
-        tap((response) => {
+        tap(() => {
           this.goBack();
         }),
-        catchError((error) => {
+        catchError(() => {
           alert("Error al Actualizar Producto");
           return of(null);
         })
