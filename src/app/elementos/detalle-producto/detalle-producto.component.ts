@@ -34,7 +34,7 @@ export class DetalleProductoComponent {
     const id_neg = parseInt(id_negString, 10);
     this.id_neg=id_neg;
     this.negocioService.obtenerProducto(id_neg,cod_prod).subscribe(
-      (producto:Object)=>this.producto=producto)
+      (producto:object)=>this.producto=producto)
   }
   goBack(): void {
     this.location.back();
@@ -42,10 +42,10 @@ export class DetalleProductoComponent {
   save(cod_prod:string,nombre:string,descripcion:string, categoria:string,precio:string,imagen:string):void{
     console.log("Tenemos: ",nombre)
     this.negocioService.updateProducto(this.id_neg,Number(cod_prod),nombre,descripcion,categoria,Number(precio),imagen).pipe(
-      tap((response) => {
+      tap(() => {
         this.goBack();
       }),
-      catchError((error) => {
+      catchError(() => {
         alert("Error al Actualizar Producto");
         return of(null);
       })
