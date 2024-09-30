@@ -56,7 +56,7 @@ export class IniciarSesionComponent implements OnInit{
           alert("Registrado exitosamente, ahora inicie sesión");
           window.location.reload();
         }),
-        catchError((error) => {
+        catchError(() => {
           alert("Error al registrar");
           return of(null);
         })
@@ -72,7 +72,7 @@ export class IniciarSesionComponent implements OnInit{
           alert("Registrado exitosamente, ahora inicie sesión");
           window.location.reload();
         }),
-        catchError((error) => {
+        catchError(() => {
           alert("Error al registrar");
           return of(null);
         })
