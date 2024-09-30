@@ -25,7 +25,7 @@ export class PedidosClienteComponent implements OnInit {
 
   getPedidos(){
     this.negociosService.obtenerPedidosCliente(this.id_cliente).subscribe(
-      (pedidos:Object)=>this.pedidos=pedidos)
+      (pedidos:object)=>this.pedidos=pedidos)
   }
 
 }
