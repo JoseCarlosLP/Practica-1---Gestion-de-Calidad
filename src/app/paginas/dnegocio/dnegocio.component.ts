@@ -26,7 +26,7 @@ export class DNegocioComponent {
   }
   obtenerNegocio(): void {
     this.negocioService.obtenerNegocio(this.id) .pipe(
-      tap((negocio: Object) => this.negocio = negocio),
+      tap((negocio: object) => this.negocio = negocio),
       catchError((error) => {
         if (error.error.error === 'Token expirado') {
           alert("Su sesión ha expirado, inicie sesión nuevamente");
@@ -40,11 +40,11 @@ export class DNegocioComponent {
   eliminar(cod_prod:number){
     console.log("Entra a funcion Eliminar: ",typeof(cod_prod));
     this.negocioService.eliminarProducto(cod_prod,this.negocio._id).pipe(
-      tap((response) => {
+      tap(() => {
         alert("Producto Eliminado Exitosamente");
         this.ngOnInit();
       }),
-      catchError((error) => {
+      catchError(() => {
         alert("Error al Eliminar Producto");
         return of(null);
       })
