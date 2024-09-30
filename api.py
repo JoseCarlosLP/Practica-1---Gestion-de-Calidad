@@ -12,7 +12,7 @@ app = Flask(__name__)
 csrf = CSRFProtect()
 csrf.init_app(app)  # Compliant
 app.config['WTF_CSRF_ENABLED'] = os.getenv('CSRF_STATUS', 'False').lower() == 'true'
-CORS(app)  # para problemas de CORS
+CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})
 key_name=os.getenv('APP_KEY_NAME')
 app.config[key_name] = os.getenv('APP_CONFIG')
 conex = MongoClient(os.getenv('DATABASE_URL'))
