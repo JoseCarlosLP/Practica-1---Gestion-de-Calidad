@@ -27,7 +27,7 @@ export class CarritoService {
   vaciarCarrito(): void {
     this.carrito = [];
   }
-  guardarCarrito(id_neg:number,id_user:number){
+  guardarCarrito(id_neg:number){
     const body = {
       id_neg:id_neg,
       id_user:Number(localStorage.getItem('idCli')),
