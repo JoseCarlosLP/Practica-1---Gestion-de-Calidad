@@ -27,17 +27,17 @@ export class PedidosAdministradorComponent {
 
   getPedidos(){
     this.negociosService.obtenerPedidosNegocio(this.id_neg).subscribe(
-      (pedidos:Object)=>this.pedidos=pedidos)
+      (pedidos:object)=>this.pedidos=pedidos)
   }
 
   cambiarEstado(id:number)
   {
     this.negociosService.actualizarPedido(id).pipe(
-      tap((response) => {
+      tap(() => {
         alert("Pedido Actualizado Exitosamente");
         this.ngOnInit();
       }),
-      catchError((error) => {
+      catchError(() => {
         alert("Error al Actualizar Pedido");
         return of(null);
       })
