@@ -31,7 +31,7 @@ export class NegocioComponent {
     this.id = parseInt(idString, 10);
     
     this.negocioService.obtenerNegocio(this.id).subscribe(
-      (negocio:Object)=>this.negocio=negocio)
+      (negocio:object)=>this.negocio=negocio)
   }
 
   comprarProducto(producto:any) {
