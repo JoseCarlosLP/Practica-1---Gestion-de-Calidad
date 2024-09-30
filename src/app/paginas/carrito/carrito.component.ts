@@ -47,10 +47,10 @@ export class CarritoComponent implements OnInit {
   confirmarCarrito():void{
     const id_user=1;
     this.carritoService.guardarCarrito(this.id_neg,id_user).pipe(
-      tap((response) => {
+      tap(() => {
         this.goBack();
       }),
-      catchError((error) => {
+      catchError(() => {
         alert("Error al Actualizar Producto");
         return of(null);
       })
